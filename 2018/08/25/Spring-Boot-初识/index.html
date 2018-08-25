@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>Tag: docker | Free Meng</title>
+  <title>Spring Boot 初识 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Just Do It!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Free Meng">
-<meta property="og:url" content="http://freemeng.com/tags/docker/index.html">
+  <meta name="description" content="本文为阅读《Spring 实战》中 Spring Boot 章节的学习笔记，初次接触 Spring Boot 对其不了解，担心书中内容关于 Spring Boot 部分比较旧，后续继续学习，发现有问题时我会更新内容，本文首发于我的公众号《ETLshow》。">
+<meta name="keywords" content="Spring Boot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot 初识">
+<meta property="og:url" content="http://freemeng.com/2018/08/25/Spring-Boot-初识/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="Just Do It!">
+<meta property="og:description" content="本文为阅读《Spring 实战》中 Spring Boot 章节的学习笔记，初次接触 Spring Boot 对其不了解，担心书中内容关于 Spring Boot 部分比较旧，后续继续学习，发现有问题时我会更新内容，本文首发于我的公众号《ETLshow》。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-25T00:29:54.018Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Meng">
-<meta name="twitter:description" content="Just Do It!">
+<meta name="twitter:title" content="Spring Boot 初识">
+<meta name="twitter:description" content="本文为阅读《Spring 实战》中 Spring Boot 章节的学习笔记，初次接触 Spring Boot 对其不了解，担心书中内容关于 Spring Boot 部分比较旧，后续继续学习，发现有问题时我会更新内容，本文首发于我的公众号《ETLshow》。">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -162,60 +164,177 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Spring-Boot-初识" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/14/docker初识/" class="archive-article-date">
-  	<time datetime="2018-04-14T03:22:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/14/docker初识/">docker初识</a>
+    <h1 class="article-title" itemprop="name">
+      Spring Boot 初识
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/08/25/Spring-Boot-初识/" class="archive-article-date">
+  	<time datetime="2018-08-25T00:28:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文为阅读《Spring 实战》中 Spring Boot 章节的学习笔记，初次接触 Spring Boot 对其不了解，担心书中内容关于 Spring Boot 部分比较旧，后续继续学习，发现有问题时我会更新内容，本文首发于我的公众号《ETLshow》。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="1-Spring-Boot-简介"><a href="#1-Spring-Boot-简介" class="headerlink" title="1. Spring Boot 简介"></a>1. Spring Boot 简介</h3><p>Spring 简化 Java 开发，Spring Boot 简化 Spring 开发。</p>
+<h3 id="2-四个主要特性"><a href="#2-四个主要特性" class="headerlink" title="2. 四个主要特性"></a>2. 四个主要特性</h3><h4 id="2-1-Spring-Boot-Starter-依赖"><a href="#2-1-Spring-Boot-Starter-依赖" class="headerlink" title="2.1 Spring Boot Starter 依赖"></a>2.1 Spring Boot Starter 依赖</h4><p><strong>Spring Boot Starter 依赖将所需常见依赖按组聚集在一起，形成单条依赖，减少了依赖列表的长度</strong></p>
+<ul>
+<li><p>Spring<br>搭建 web 层时，pom.xml 中需要添加 spring-web、spring-mvc、jackson-databind 等多条依赖</p>
+</li>
+<li><p>SpringBoot<br>搭建 web 层时，pom.xml 中仅需要添加 spring-boot-starter-web</p>
+</li>
+</ul>
+<p><em>原理：利用了 Maven 和 Gradle 的依赖传递特性</em></p>
+<h4 id="2-2-自动配置"><a href="#2-2-自动配置" class="headerlink" title="2.2 自动配置"></a>2.2 自动配置</h4><p><strong>自动配置削减了 Spring 配置的数量，它在实现时，会考虑应用中的因素并推断你所需要的 Spring 配置</strong></p>
+<ul>
+<li><p>Spring<br>搭建 web 层时，在 spring-mvc.xml 配置文件中，我们需要配置视图解析器、资源处理器、消息转换器等 </p>
+</li>
+<li><p>Spring Boot<br>搭建 web 层，无需配置 spring-mvc.xml,Spring Boot 自动配置</p>
+</li>
+</ul>
+<h4 id="2-3-命令行接口-CLI"><a href="#2-3-命令行接口-CLI" class="headerlink" title="2.3 命令行接口 CLI"></a>2.3 命令行接口 CLI</h4><p>结合 Groovy 进一步简化 Spring 开发。 </p>
+<blockquote>
+<p>Groovy 是一种基于 JVM（Java 虚拟机）的敏捷开发语言，它结合了 Python、Ruby 和 Smalltalk 的许多强大的特性，Groovy 代码能够与 Java 代码很好地结合，也能用于扩展现有代码。由于其运行在 JVM 上的特性，Groovy 可以使用其他 Java 语言编写的库。</p>
+</blockquote>
+<h4 id="2-4-Actuator-管理特性"><a href="#2-4-Actuator-管理特性" class="headerlink" title="2.4 Actuator 管理特性"></a>2.4 Actuator 管理特性</h4><p>它开启了一扇窗，让我们洞悉应用的内部运行状况。<br>主要功能就是为基于 SpringBoot 的应用添加多个有用的管理端点。<br>为了启用 Actuator , pom.xml 中需要添加 spring-boot-starter-actuator</p>
+<ul>
+<li>端点<ul>
+<li>/autoconfig 描述了 Spring Boot 在使用自动配置的时候，所做出的决策</li>
+<li>/beans 列出运行应用所配置的 bean</li>
+<li>等等</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>Spring 简化 Java 开发，Spring Boot 简化 Spring 开发。</p>
+<p>使用 starter 缩短了 pom 依赖，可以理解为对 Spring 小模块的封装。</p>
+<p>使用自动配置，减少了 Spring 的使用配置。</p>
+<p>配置少了，提供了管理端点来查看应用的信息。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的支持是我最大的动力！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/08/05/程序员职业规划/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">程序员职业规划</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://freemeng.com/2018/08/25/Spring-Boot-初识/",
+  owner: 'zmdstr',
+  repo: 'blog_comment',
+  oauth: {
+    client_id: 'a1eb5d9a3efb190d6dbc',
+    client_secret: 'b42b410f8d3cd1c982ac4010f749e18fb500a490',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -238,9 +357,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
