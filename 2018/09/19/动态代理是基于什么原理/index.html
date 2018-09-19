@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>Archives | Free Meng</title>
+  <title>动态代理是基于什么原理 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Just Do It!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Free Meng">
-<meta property="og:url" content="http://freemeng.com/archives/page/4/index.html">
+  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 6 篇学习笔记，坚持写完 36 讲学习笔记。  关于动态代理，我之前接触的概念有：代理模式、静态代理、JDK 动态代理、CGLib 动态代理，ASM，今天来学习一下。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态代理是基于什么原理">
+<meta property="og:url" content="http://freemeng.com/2018/09/19/动态代理是基于什么原理/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="Just Do It!">
+<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 6 篇学习笔记，坚持写完 36 讲学习笔记。  关于动态代理，我之前接触的概念有：代理模式、静态代理、JDK 动态代理、CGLib 动态代理，ASM，今天来学习一下。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-19T14:48:32.247Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Meng">
-<meta name="twitter:description" content="Just Do It!">
+<meta name="twitter:title" content="动态代理是基于什么原理">
+<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 6 篇学习笔记，坚持写完 36 讲学习笔记。  关于动态代理，我之前接触的概念有：代理模式、静态代理、JDK 动态代理、CGLib 动态代理，ASM，今天来学习一下。">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -162,405 +164,169 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-动态代理是基于什么原理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      动态代理是基于什么原理
+    </h1>
+  
+
+        
+        <a href="/2018/09/19/动态代理是基于什么原理/" class="archive-article-date">
+  	<time datetime="2018-09-19T14:39:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-19</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 6 篇学习笔记，坚持写完 36 讲学习笔记。</p>
+</blockquote>
+<p>关于动态代理，我之前接触的概念有：代理模式、静态代理、JDK 动态代理、CGLib 动态代理，ASM，今天来学习一下。<br><a id="more"></a></p>
+<h3 id="1-问题"><a href="#1-问题" class="headerlink" title="1. 问题"></a>1. 问题</h3><p>谈谈 Java 反射机制，动态代理基于什么原理？</p>
+<h3 id="2-典型回答"><a href="#2-典型回答" class="headerlink" title="2. 典型回答"></a>2. 典型回答</h3><p>反射是 Java 语言的一个高级特性，赋予程序在运行时自省的能力。通过反射，我们可以获取类及方法上的注解，创建对象，调用其方法。</p>
+<p>动态代理，一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用动态代理实现的，例如面向切面编程（AOP）。</p>
+<p>实现动态代理的方式有多种，JDK 动态代理是基于反射机制实现的，还有其他的实现方式，比如利用传说中更高性能的字节码操作机制，类似 ASM、cglib(基于 ASM)、Javassit 等。</p>
+<p>很多繁琐重复的编程，都可以被动态代理机制优雅地解决。</p>
+<h3 id="3-扩展"><a href="#3-扩展" class="headerlink" title="3. 扩展"></a>3. 扩展</h3><ol>
+<li><p>setAccessible<br>我们使用反射调用 private 方法时，需要 setAccessible(true)，setAccessible()可以理解成修饰成员的 public、protected、private，这意味着我们可以在<strong>运行时修改成员的访问限制</strong>。<br>但 Java 9 以后，Jigsaw 项目新增的模块化系统，出于封装性的考虑，对反射访问进行了限制。Jigsaw 引入了所谓的 Open 概念，只有当被反射操作的模块和指定的包对反射调用者模块 Open，才能使用 setAccessible，否则认为不合法的操作。</p>
+</li>
+<li><p>动态代理<br>首先它是一个代理机制，代理可以看作是对调用目标的一个包装，这样我们对目标代码的调用不是直接发生的，而是通过代理完成的。<br>代理引入了中间层，我们可以在调用被代理对象前做一些其他操作，如诊断、限流。<br>RPC 是一个很好的例子，框架内部的寻址、序列化、反序列化等，对于调用者往往是没有太大意义的，通过代理，可以提供更加友善的界面。</p>
+</li>
+<li><p>JDK Proxy 和 cglib<br>Spring AOP 支持两种模式的动态代理，JDK Proxy 或者 cglib。</p>
+</li>
+</ol>
+<ul>
+<li><p>JDK Proxy 的优势<br>JDK 本身的支持，依赖少，平滑进行 JDK 版本升级，代码实现简单</p>
+</li>
+<li><p>类似 cglib 框架优势<br>没有实现同一接口限制，高性能</p>
+</li>
+</ul>
+<p>性能不是唯一考量，JDK Proxy 现在性能并不差，可靠性、可维护性、编程工作量等往往是主要考量因素。</p>
+<ol start="4">
+<li>动态代理的两个重要应用<br>RPC 和 AOP</li>
+</ol>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>没有反射就没有框架，使用反射就是为了提高代码灵活性。<br>动态代理的两个典型应用 RPC 和 AOP，后续会再写相关文章。</p>
+<h3 id="5-参考文档"><a href="#5-参考文档" class="headerlink" title="5. 参考文档"></a>5. 参考文档</h3><p>《Java 核心技术 36 讲》</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的支持是我最大的动力！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/11/github写博客步骤/" class="archive-article-date">
-  	<time datetime="2017-06-11T01:38:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/11/github写博客步骤/">github写博客步骤</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">github博客</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/03/我的数字资产保护/" class="archive-article-date">
-  	<time datetime="2017-06-03T01:55:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-03</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/15/创建一个spring-boot-应用/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">创建一个spring boot 应用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/03/我的数字资产保护/">我的数字资产保护</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/06/正则表达式/" class="archive-article-date">
-  	<time datetime="2017-05-06T13:56:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/06/正则表达式/">正则表达式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">正则</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/18/单例设计模式学习/" class="archive-article-date">
-  	<time datetime="2017-03-18T09:48:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/18/单例设计模式学习/">单例设计模式学习</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">design pattern</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/01/springmvc poi excel/" class="archive-article-date">
-  	<time datetime="2017-03-01T05:50:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/01/springmvc poi excel/">springmvc poi excel 导入</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">poi</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/27/distpicker使用记录/" class="archive-article-date">
-  	<time datetime="2017-02-27T09:51:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/27/distpicker使用记录/">distpicker使用记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/15/gitHub-hexo-Next个人博客搭建记录/" class="archive-article-date">
-  	<time datetime="2017-02-15T13:49:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/15/gitHub-hexo-Next个人博客搭建记录/">gitHub-hexo-Next个人博客搭建记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">github博客</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/30/SVN与GIT/" class="archive-article-date">
-  	<time datetime="2017-01-30T09:53:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/30/SVN与GIT/">SVN与GIT</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/23/fiddler使用记录/" class="archive-article-date">
-  	<time datetime="2017-01-23T07:55:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/23/fiddler使用记录/">fiddler使用记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">fiddler</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/20/mybatis异常/" class="archive-article-date">
-  	<time datetime="2017-01-20T09:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/20/mybatis异常/">mybatis异常</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/5/">Next &raquo;</a>
-    </nav>
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://freemeng.com/2018/09/19/动态代理是基于什么原理/",
+  owner: 'zmdstr',
+  repo: 'blog_comment',
+  oauth: {
+    client_id: 'a1eb5d9a3efb190d6dbc',
+    client_secret: 'b42b410f8d3cd1c982ac4010f749e18fb500a490',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -584,8 +350,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
