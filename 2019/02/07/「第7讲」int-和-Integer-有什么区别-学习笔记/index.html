@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>Archives: 2018/9 | Free Meng</title>
+  <title>「第7讲」int 和 Integer 有什么区别|学习笔记 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Just Do It!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Free Meng">
-<meta property="og:url" content="http://freemeng.com/archives/2018/09/index.html">
+  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 7 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「第7讲」int 和 Integer 有什么区别|学习笔记">
+<meta property="og:url" content="http://freemeng.com/2019/02/07/「第7讲」int-和-Integer-有什么区别-学习笔记/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="Just Do It!">
+<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 7 篇学习笔记，坚持写完 36 讲学习笔记。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-07T14:22:04.476Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Meng">
-<meta name="twitter:description" content="Just Do It!">
+<meta name="twitter:title" content="「第7讲」int 和 Integer 有什么区别|学习笔记">
+<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 7 篇学习笔记，坚持写完 36 讲学习笔记。">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -162,36 +164,87 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-「第7讲」int-和-Integer-有什么区别-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/19/动态代理是基于什么原理/" class="archive-article-date">
-  	<time datetime="2018-09-19T14:39:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/19/动态代理是基于什么原理/">动态代理是基于什么原理</a>
+    <h1 class="article-title" itemprop="name">
+      「第7讲」int 和 Integer 有什么区别|学习笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/02/07/「第7讲」int-和-Integer-有什么区别-学习笔记/" class="archive-article-date">
+  	<time datetime="2019-02-07T14:17:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 7 篇学习笔记，坚持写完 36 讲学习笔记。</p>
+</blockquote>
+<a id="more"></a>
+<p>数据类型是程序设计语言描述事物、对象的方法。Java 数据类型分为内置类型和扩展类型两大类。</p>
+<h3 id="1-问题"><a href="#1-问题" class="headerlink" title="1.问题"></a>1.问题</h3><p>int 和 Integer 有什么区别？谈谈 Integer 的值的缓存范围</p>
+<h3 id="2-典型回答"><a href="#2-典型回答" class="headerlink" title="2.典型回答"></a>2.典型回答</h3><p>int 是 Java 8 个基本数据类型中的整形。<br>Integer 是 int 的包装类，是引用数据类型。<br>使用传统方法构建 Integer 对象，即 new 出来的 Integer 不进行缓存，而通过静态工厂方法 valueOf 获得的 Integer 对象会进行缓存，默认缓存范围是 -128 到 127 之间。</p>
+<h3 id="3-扩展"><a href="#3-扩展" class="headerlink" title="3.扩展"></a>3.扩展</h3><h4 id="3-1-int"><a href="#3-1-int" class="headerlink" title="3.1 int"></a>3.1 int</h4><p>Java 保留了基本数据类型，但这主要是为满足 Java <strong>高效率执行</strong>的要求。<br>从编程者角度看 Java 不是纯粹的面向对象语言，但是从 JVM 角度看 Java 是纯粹的面向对象编程语言（详见参考文档一）；<br>下面程序需要 9 秒，但当我把 Long 改成 long 之后，0 秒内就完成了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="keyword">long</span> millis = System.currentTimeMillis();</span><br><span class="line">Long sum = <span class="number">0L</span>; <span class="comment">// uses Long, not long</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>; i &lt;= Integer.MAX_VALUE; i++) &#123;</span><br><span class="line">sum += i;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(sum);</span><br><span class="line">System.out.println((System.currentTimeMillis() - millis) / <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-2-Integer"><a href="#3-2-Integer" class="headerlink" title="3.2 Integer"></a>3.2 Integer</h4><p>提供这些类包裹的原因主要是为了在某些接口上提供和类（对象）一致的接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">System.out.println(<span class="keyword">new</span> Integer(<span class="number">3</span>)==(<span class="keyword">new</span> Integer(<span class="number">3</span>))); <span class="comment">// false</span></span><br><span class="line">System.out.println(<span class="keyword">new</span> Integer(<span class="number">100</span>)==(<span class="keyword">new</span> Integer(<span class="number">100</span>)));<span class="comment">// false</span></span><br><span class="line"><span class="comment">//[-128; 127] 这个区间的265个整数会被 JVM 缓存存放， 所以在这个区间， JVM返回相同的对象</span></span><br><span class="line">System.out.println(Integer.valueOf(<span class="number">5</span>)==(Integer.valueOf(<span class="number">5</span>)));<span class="comment">// true</span></span><br><span class="line">System.out.println(Integer.valueOf(<span class="number">200</span>)==(Integer.valueOf(<span class="number">200</span>)) );<span class="comment">//false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>new 出来的对象是在堆内存中，返回的永远是不同的对象，但是当整数范围在 -128 和 127之间时，Integer.valueOf 返回的是同一个对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line"><span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Integer 可以区分出未赋值和值为 0 的区别，int 则无法表达出未赋值的情况。例如，要想表达出没有参加考试和考试成绩为 0 的区别，则只能使用 Integer 。<br>很多方法参数就只接收对象类型(Object) 还比如泛型就只支持对象类型。<br>如果在数据库操作中某数值列允许为 null 的话，那接受该列数据的类型就只能为 Integer，而不能为 int，所以在一般性的持久化对象中尽量少地使用基本类型，除非确定它不会为空。</p>
+<h4 id="3-3-语法糖"><a href="#3-3-语法糖" class="headerlink" title="3.3 语法糖"></a>3.3 语法糖</h4><p>可以简单理解为 Java 平台为我们自动进行了一些转换，保证不同的写法在运行时等价，它们发生在编译阶段，也就是生成的字节码是一致的。</p>
+<h4 id="3-4-自动装箱、自动拆箱发生在什么阶段？"><a href="#3-4-自动装箱、自动拆箱发生在什么阶段？" class="headerlink" title="3.4 自动装箱、自动拆箱发生在什么阶段？"></a>3.4 自动装箱、自动拆箱发生在什么阶段？</h4><p>自动装箱及拆箱是 java 语法糖，会自动转换为 Integer.valueOf()及 Integer.intValue() 发生在编译阶段。</p>
+<h4 id="3-5-自动装箱时，缓存机制起作用么？"><a href="#3-5-自动装箱时，缓存机制起作用么？" class="headerlink" title="3.5 自动装箱时，缓存机制起作用么？"></a>3.5 自动装箱时，缓存机制起作用么？</h4><p>同上，语法糖，因此起作用</p>
+<h4 id="3-6-自动装箱、自动拆箱在实际编程中有什么需要注意的吗？"><a href="#3-6-自动装箱、自动拆箱在实际编程中有什么需要注意的吗？" class="headerlink" title="3.6 自动装箱、自动拆箱在实际编程中有什么需要注意的吗？"></a>3.6 自动装箱、自动拆箱在实际编程中有什么需要注意的吗？</h4><p>原则上避免无意中的装箱、拆箱行为，尤其是在性能敏感的场合，创建 10 万个 Java 对象和 10 万个整数的开销可不是一个数量级上的，不管是内存使用还是处理速度，光是对象头的空间占用就已经是数量级的差距了。</p>
+<h4 id="3-7-Java-对象要比原始数据类型开销大，那对象的内存结构是什么样子的？"><a href="#3-7-Java-对象要比原始数据类型开销大，那对象的内存结构是什么样子的？" class="headerlink" title="3.7 Java 对象要比原始数据类型开销大，那对象的内存结构是什么样子的？"></a>3.7 Java 对象要比原始数据类型开销大，那对象的内存结构是什么样子的？</h4><blockquote>
+<p>在 HotSpot 虚拟机中，对象在内存中存储的布局可以分为 3 块区域：对象头（Header）实例数据（Instance Data）和对齐填充（Padding）。</p>
+</blockquote>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>int 基本数据类型，保留它是为了效率，Integer 包装类，提供对象相关操作，考虑泛型等操作。</p>
+<h3 id="5-参考文档"><a href="#5-参考文档" class="headerlink" title="5.参考文档"></a>5.参考文档</h3><p>《Java 核心技术 36 讲》<br>《深入理解 Java 虚拟机》<br><a href="http://www.codeceo.com/article/why-java-purely-object-oriented-language.html" target="_blank" rel="noopener">Java到底是不是一种纯面向对象语言</a><br><a href="https://zh.wikibooks.org/zh-hans/Java/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B" target="_blank" rel="noopener">Java/数据类型</a><br><a href="http://lyy3323.iteye.com/blog/585712" target="_blank" rel="noopener">为什么有int 和integer</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的支持是我最大的动力！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -203,57 +256,71 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/15/创建一个spring-boot-应用/" class="archive-article-date">
-  	<time datetime="2018-09-15T07:22:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/19/代码精进之路学习笔记一/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">代码精进之路学习笔记一</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/15/创建一个spring-boot-应用/">创建一个spring boot 应用</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://freemeng.com/2019/02/07/「第7讲」int-和-Integer-有什么区别-学习笔记/",
+  owner: 'zmdstr',
+  repo: 'blog_comment',
+  oauth: {
+    client_id: 'a1eb5d9a3efb190d6dbc',
+    client_secret: 'b42b410f8d3cd1c982ac4010f749e18fb500a490',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -276,8 +343,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
