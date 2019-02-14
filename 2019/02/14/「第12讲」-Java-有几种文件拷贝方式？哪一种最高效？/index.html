@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>Archives: 2018 | Free Meng</title>
+  <title>「第12讲」 Java 有几种文件拷贝方式？哪一种最高效？ | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Just Do It!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Free Meng">
-<meta property="og:url" content="http://freemeng.com/archives/2018/page/2/index.html">
+  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 12 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「第12讲」 Java 有几种文件拷贝方式？哪一种最高效？">
+<meta property="og:url" content="http://freemeng.com/2019/02/14/「第12讲」-Java-有几种文件拷贝方式？哪一种最高效？/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="Just Do It!">
+<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 12 篇学习笔记，坚持写完 36 讲学习笔记。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://freemeng.com/img/java/12_输入输出流.png">
+<meta property="og:image" content="http://freemeng.com/img/java/12_transforTo.png">
+<meta property="og:updated_time" content="2019-02-14T09:57:05.059Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Meng">
-<meta name="twitter:description" content="Just Do It!">
+<meta name="twitter:title" content="「第12讲」 Java 有几种文件拷贝方式？哪一种最高效？">
+<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 12 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta name="twitter:image" content="http://freemeng.com/img/java/12_输入输出流.png">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -162,74 +167,93 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-「第12讲」-Java-有几种文件拷贝方式？哪一种最高效？" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/12/值得一看的-IDEA-快捷键说明/" class="archive-article-date">
-  	<time datetime="2018-05-12T14:34:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/12/值得一看的-IDEA-快捷键说明/">值得一看的 IDEA 快捷键说明</a>
+    <h1 class="article-title" itemprop="name">
+      「第12讲」 Java 有几种文件拷贝方式？哪一种最高效？
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IDE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/08/Java核心技术36讲学习笔记一/" class="archive-article-date">
-  	<time datetime="2018-05-07T23:52:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
+        
+        <a href="/2019/02/14/「第12讲」-Java-有几种文件拷贝方式？哪一种最高效？/" class="archive-article-date">
+  	<time datetime="2019-02-14T09:55:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/08/Java核心技术36讲学习笔记一/">Java核心技术36讲学习笔记一</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 12 篇学习笔记，坚持写完 36 讲学习笔记。</p>
+</blockquote>
+<a id="more"></a>
+<p>我们之前学习了 Java IO 体系，BIO、NIO、AIO，今天我们来看看其它不可忽略的部分。</p>
+<h3 id="1-Java-有几种文件拷贝方式？"><a href="#1-Java-有几种文件拷贝方式？" class="headerlink" title="1.Java 有几种文件拷贝方式？"></a>1.Java 有几种文件拷贝方式？</h3><ul>
+<li><p>利用 java.io 类库，直接为源文件构建一个 FileInputStream 读取，然后再为目标文件构建一个 FileOutputStream，完成写入工作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByStream</span><span class="params">(File source, File dest)</span> <span class="keyword">throws</span></span></span><br><span class="line"><span class="function">IOException </span>&#123;</span><br><span class="line"><span class="keyword">try</span> (InputStream is = <span class="keyword">new</span> FileInputStream(source);</span><br><span class="line">OutputStream os = <span class="keyword">new</span> FileOutputStream(dest);)&#123;</span><br><span class="line"><span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line"><span class="keyword">int</span> length;</span><br><span class="line"><span class="keyword">while</span> ((length = is.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">os.write(buffer, <span class="number">0</span>, length);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>利用 java.nio 类库提供的 transferTo 或 transferFrom 方法实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFileByChannel</span><span class="params">(File source, File dest)</span> <span class="keyword">throws</span></span></span><br><span class="line"><span class="function">IOException </span>&#123;</span><br><span class="line"><span class="keyword">try</span> (FileChannel sourceChannel = <span class="keyword">new</span> FileInputStream(source)</span><br><span class="line">.getChannel();</span><br><span class="line">FileChannel targetChannel = <span class="keyword">new</span> FileOutputStream(dest).getChannel</span><br><span class="line">();)&#123;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">long</span> count = sourceChannel.size() ;count&gt;<span class="number">0</span> ;) &#123;</span><br><span class="line"><span class="keyword">long</span> transferred = sourceChannel.transferTo(</span><br><span class="line">sourceChannel.position(), count, targetChannel); sourceChannel.position(sourceChannel.position() + transferred);</span><br><span class="line">count -= transferred;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java 标准类库本身提供的 File.copy 实现</p>
+</li>
+</ul>
+<h3 id="2-哪一种文件拷贝方式最高效？"><a href="#2-哪一种文件拷贝方式最高效？" class="headerlink" title="2.哪一种文件拷贝方式最高效？"></a>2.哪一种文件拷贝方式最高效？</h3><p>总体上来说，NIO transferTo/From 的方式可能更快，因为它能利用现代操作系统底层机制，避免不必要拷贝和上下文切换。</p>
+<h3 id="3-不同拷贝方法，本质上有什么明显的区别"><a href="#3-不同拷贝方法，本质上有什么明显的区别" class="headerlink" title="3.不同拷贝方法，本质上有什么明显的区别"></a>3.不同拷贝方法，本质上有什么明显的区别</h3><ul>
+<li><p>用户态空间（User Space）<br>操作系统内核、硬件驱动等运行在内核态空间，具有相对高的特权</p>
+</li>
+<li><p>内核态空间（Kernel Space）<br>而内核态空间，则是给普通应用和服务使用。</p>
+</li>
+</ul>
+<p>当我们使用输入输出流进行读写时，实际上是进行了多次上下文切换，比如应用读取数据时，先在内核态将数据从磁盘读取到内核缓存，再切换到用户态将数据从内核缓存读取到用户缓存。<br>写入操作也类似，仅仅是步骤相反，参考下图：<br><img src="/img/java/12_输入输出流.png" alt="stream"><br>所以，这种方式会带来一定的额外开销，可能会降低 IO 效率。</p>
+<p>而基于 NIO transferTo 的实现方式，在 Linux 和 Unix 上，则会使用到零拷贝技术，数据传输并不需要用户态参与，省去了上下文切换的开销和不必要的内存拷贝，进而可能提供应用拷贝性能。</p>
+<p>注意，transferTo 不仅仅是可以用在文件拷贝中，与其类似的，读取磁盘文件，然后进行 Socket 发送，同样可以享受这种机制带来的性能和拓展性提高。<br><img src="/img/java/12_transforTo.png" alt="nio"></p>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>Java IO 一直是比较难学习的部分，这两节对课程里的内容做了简化，想要更深入的学习，请到极客时间订阅课程。</p>
+<p>今天讲了 Java 文件拷贝方式，第一种，使用输入输出流的方式，这种方式涉及用户态和内核态的切换，效率不高。第二种，NIO transferTo，这种方式，更加底层，使用零拷贝，不涉及用户态、内核态切换，效率高。而第三种，Java 类库的 File.copy 最终也是用的用户态的流，效率不高。</p>
+<h3 id="5-参考文档"><a href="#5-参考文档" class="headerlink" title="5. 参考文档"></a>5. 参考文档</h3><p>《Java 核心技术 36 讲》</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的支持是我最大的动力！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -241,326 +265,70 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/21/时间管理/" class="archive-article-date">
-  	<time datetime="2018-04-21T10:15:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-21</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/13/「第11讲」02-NIO-如何实现多路复用？-学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">「第11讲」02 NIO 如何实现多路复用？|学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/21/时间管理/">时间管理--如何充分利用你的24小时读书笔记</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/15/笔记本选购学习笔记/" class="archive-article-date">
-  	<time datetime="2018-04-15T01:18:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/15/笔记本选购学习笔记/">笔记本选购学习笔记</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/14/docker初识/" class="archive-article-date">
-  	<time datetime="2018-04-14T03:22:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/14/docker初识/">docker初识</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/13/hadoop-java-heap-space/" class="archive-article-date">
-  	<time datetime="2018-04-13T14:44:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/13/hadoop-java-heap-space/">hadoop java heap space</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/12/Day01-hadoop-初识/" class="archive-article-date">
-  	<time datetime="2018-04-12T14:16:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/12/Day01-hadoop-初识/">Day01 hadoop 初识</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/02/Python-Demo-定投基金小工具-优化一/" class="archive-article-date">
-  	<time datetime="2018-04-02T14:22:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/02/Python-Demo-定投基金小工具-优化一/">Python Demo(定投基金小工具)优化一</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/02/Python-Demo-定投基金小工具/" class="archive-article-date">
-  	<time datetime="2018-04-02T13:39:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/02/Python-Demo-定投基金小工具/">Python Demo(定投基金小工具)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/11/关于目标/" class="archive-article-date">
-  	<time datetime="2018-03-11T11:24:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/11/关于目标/">关于目标</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2018/">&laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span>
-    </nav>
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://freemeng.com/2019/02/14/「第12讲」-Java-有几种文件拷贝方式？哪一种最高效？/",
+  owner: 'zmdstr',
+  repo: 'blog_comment',
+  oauth: {
+    client_id: 'a1eb5d9a3efb190d6dbc',
+    client_secret: 'b42b410f8d3cd1c982ac4010f749e18fb500a490',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -584,8 +352,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
