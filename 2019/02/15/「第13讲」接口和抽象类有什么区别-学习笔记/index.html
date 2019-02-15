@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>docker初识 | Free Meng</title>
+  <title>「第13讲」接口和抽象类有什么区别|学习笔记 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="听说 Docker 好久了，昨天听同事说，我们测试环境的 linux 都不是物理机，都是 Docker，记得之前微信收藏了一篇介绍 Docker 的文章，便翻出来看了一下，有输入就要有输出，所以写篇小文，记下基本知识，本文只涉及 Docker 介绍，如果想详细了解，请阅读参考文章。">
-<meta name="keywords" content="docker">
+  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 13 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker初识">
-<meta property="og:url" content="http://freemeng.com/2018/04/14/docker初识/index.html">
+<meta property="og:title" content="「第13讲」接口和抽象类有什么区别|学习笔记">
+<meta property="og:url" content="http://freemeng.com/2019/02/15/「第13讲」接口和抽象类有什么区别-学习笔记/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="听说 Docker 好久了，昨天听同事说，我们测试环境的 linux 都不是物理机，都是 Docker，记得之前微信收藏了一篇介绍 Docker 的文章，便翻出来看了一下，有输入就要有输出，所以写篇小文，记下基本知识，本文只涉及 Docker 介绍，如果想详细了解，请阅读参考文章。">
+<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 13 篇学习笔记，坚持写完 36 讲学习笔记。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://freemeng.com/img/docker/docker.jpg">
-<meta property="og:image" content="http://freemeng.com/img/docker/仓库.png">
-<meta property="og:updated_time" content="2018-07-22T10:23:04.407Z">
+<meta property="og:updated_time" content="2019-02-15T15:04:14.443Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="docker初识">
-<meta name="twitter:description" content="听说 Docker 好久了，昨天听同事说，我们测试环境的 linux 都不是物理机，都是 Docker，记得之前微信收藏了一篇介绍 Docker 的文章，便翻出来看了一下，有输入就要有输出，所以写篇小文，记下基本知识，本文只涉及 Docker 介绍，如果想详细了解，请阅读参考文章。">
-<meta name="twitter:image" content="http://freemeng.com/img/docker/docker.jpg">
+<meta name="twitter:title" content="「第13讲」接口和抽象类有什么区别|学习笔记">
+<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 13 篇学习笔记，坚持写完 36 讲学习笔记。">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -167,48 +164,61 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-docker初识" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-「第13讲」接口和抽象类有什么区别-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      docker初识
+      「第13讲」接口和抽象类有什么区别|学习笔记
     </h1>
   
 
         
-        <a href="/2018/04/14/docker初识/" class="archive-article-date">
-  	<time datetime="2018-04-14T03:22:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-14</time>
+        <a href="/2019/02/15/「第13讲」接口和抽象类有什么区别-学习笔记/" class="archive-article-date">
+  	<time datetime="2019-02-15T15:03:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>听说 Docker 好久了，昨天听同事说，我们测试环境的 linux 都不是物理机，都是 Docker，记得之前微信收藏了一篇介绍 Docker 的文章，便翻出来看了一下，有输入就要有输出，所以写篇小文，记下基本知识，本文只涉及 Docker 介绍，如果想详细了解，请阅读参考文章。<br><a id="more"></a></p>
-<h1 id="一-啥是-Docker"><a href="#一-啥是-Docker" class="headerlink" title="一.啥是 Docker"></a>一.啥是 Docker</h1><p><img src="/img/docker/docker.jpg" alt="Docker"></p>
-<p>虚拟机 -&gt; Linux 容器 -&gt; Docker</p>
-<ul>
-<li>虚拟机（virtual machine）</li>
+        <blockquote>
+<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 13 篇学习笔记，坚持写完 36 讲学习笔记。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="1-接口和抽象类有什么区别？"><a href="#1-接口和抽象类有什么区别？" class="headerlink" title="1.接口和抽象类有什么区别？"></a>1.接口和抽象类有什么区别？</h3><ul>
+<li><p>接口<br>接口是对行为的抽象，它是抽象方法的集合，利用接口可以达到 API 定义和实现分离的目的。接口，不能实例化；不能包含任何非常量成员；没有非静态方法实现。</p>
+</li>
+<li><p>抽象类<br>抽象类主要是代码重用，除了不能实例化，形式上和一般的 Java 类并没有太大区别，可以有一个或者多个抽象方法，也可以没有抽象方法。</p>
+</li>
 </ul>
-<p>就是带环境安装的一种解决方案。它可以在一种操作系统里面运行另一种操作系统，比如在 Windows 系统里面运行 Linux 系统。</p>
-<ul>
-<li>Linux 容器<br>不是模拟一个完整的操作系统，而是对进程进行隔离。或者说，在正常进程的外面套了一个保护层。有点像轻量级的虚拟机，能够提供虚拟化的环境，但是成本开销小得多。</li>
-<li>Docker</li>
+<h3 id="2-接口"><a href="#2-接口" class="headerlink" title="2.接口"></a>2.接口</h3><ul>
+<li><p>Mark Interface<br>没有任何方法的接口，它的目的就是为了声明某些东西，比如我们熟知的 Cloneable、Serializable 等。它与 Annotation 有异曲同工之处，好处是简单直接。对于 Annotation，因为可以指定参数和值，在表达能力上要更强大一些，所以更多人选择使用 Annotaion。</p>
+</li>
+<li><p>Functional Interface<br>Java 8 增加了函数式编程的支持，所谓 functional interface，简单说就是只有一个抽象方法的接口，通常建议使用 @FunctionalIntercace Annotation 来标记。</p>
+</li>
+<li><p>default method<br>Java 8 以后，接口也是可以有方法实现的。Java 8 中添加了一系列 default method，主要是增加 Lambda、Stream 相关功能。</p>
+</li>
 </ul>
-<p>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。<br>Docker 将<strong>应用程序</strong>与该<strong>程序的依赖</strong>，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。</p>
-<h1 id="二-为啥使用-Docker"><a href="#二-为啥使用-Docker" class="headerlink" title="二.为啥使用 Docker"></a>二.为啥使用 Docker</h1><p>1.合作开发的时候，在本机可以跑，别人的电脑跑不起来。- 崩溃<br>2.服务器自己的程序挂了，结果发现是别人程序出了问题把内存吃完了，自己程序因为内存不够就挂了。- 倒霉<br>3.公司要弄一个活动，可能会有大量的流量进来，公司需要再多部署几十台服务器。- 搞死</p>
-<h1 id="三-Docker-用途"><a href="#三-Docker-用途" class="headerlink" title="三.Docker 用途"></a>三.Docker 用途</h1><p>Docker 的主要用途，目前有三大类。</p>
-<p>（1）提供一次性的环境。比如，本地测试他人的软件、持续集成的时候提供单元测试和构建的环境。<br>（2）提供弹性的云服务。因为 Docker 容器可以随开随关，很适合动态扩容和缩容。<br>（3）组建微服务架构。通过多个容器，一台机器可以跑多个服务，因此在本机就可以模拟出微服务架构。</p>
-<h1 id="三-基本概念"><a href="#三-基本概念" class="headerlink" title="三.基本概念"></a>三.基本概念</h1><p><img src="/img/docker/仓库.png" alt="容器 镜像 仓库"></p>
+<h3 id="3-面向对象设计"><a href="#3-面向对象设计" class="headerlink" title="3.面向对象设计"></a>3.面向对象设计</h3><p>面向对象设计的基本要素：封装、继承、多态。</p>
+<p>设计原则，S.O.L.I.D 原则。</p>
 <ul>
-<li>镜像<br>Docker 把应用程序及其依赖，打包在 image 文件里面</li>
-<li>仓库<br>存放 image</li>
-<li>容器<br>运行 image<h1 id="四-参考文章"><a href="#四-参考文章" class="headerlink" title="四.参考文章"></a>四.参考文章</h1></li>
+<li><p>单一职责（Single Responsibility）<br>类或者对象最好只有单一职责，在程序设计中如果发现某个类承担着多种义务，可以考虑进行拆分。</p>
+</li>
+<li><p>开关原则（Open-Close,Open for extension,close for modification）<br>设计要对扩展开放，对修改关闭。</p>
+</li>
+<li><p>里氏替换（Liskov Substitution）<br>进行继承关系抽象时，凡是可以用父类或者基类的地方，都可以用子类替换。</p>
+</li>
+<li><p>接口分离（Interface Segregation）<br>在进行类和接口设计时，如果在一个接口里定义了太多方法，其子类可能面临两难，就是只有部分方法对它是有意义的。这就破坏了程序的内聚性。<br>对于这种情况，可以通过拆分成功能单一的多个接口，讲行为进行解耦。</p>
+</li>
+<li><p>依赖反转（Dependency Inversion）<br>实体应该依赖抽象而不是实现。也就是高层次模块，不应该依赖低层次模块，而是应该基于抽象。实践这一原则是保证产品代码之间适当耦合度的法宝。</p>
+</li>
 </ul>
-<p><a href="https://mp.weixin.qq.com/s/us1b8gLbS5djEAFnTlQyGQ" target="_blank" rel="noopener">1.Docker 入门，看这篇就够了</a><br><a href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">2.Docker 入门教程</a><br><a href="http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html" target="_blank" rel="noopener">3.Docker 微服务教程</a></p>
+<p>我们来看一个代码改进例子。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VIPCenter</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">serviceVIP</span><span class="params">(T extend User user&gt;)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (user <span class="keyword">instanceof</span> SlumDogVIP) &#123;</span><br><span class="line"><span class="comment">// 穷 X VIP，活动抢的那种</span></span><br><span class="line"><span class="comment">// do somthing</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(user <span class="keyword">instanceof</span> RealVIP) &#123;</span><br><span class="line"><span class="comment">// do somthing</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>利用开闭原则，进行改造<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VIPCenter</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> Map&lt;User.TYPE, ServiceProvider&gt; providers;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">serviceVIP</span><span class="params">(T extend User user） &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">providers.get(user.getType()</span>).<span class="title">service</span><span class="params">(user)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">ServiceProvider</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(T extend User user)</span> </span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SlumDogVIPServiceProvider</span> <span class="keyword">implements</span> <span class="title">ServiceProvider</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(T extend User user)</span></span>&#123;</span><br><span class="line"><span class="comment">// do somthing</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RealVIPServiceProvider</span> <span class="keyword">implements</span> <span class="title">ServiceProvider</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(T extend User user)</span> </span>&#123;</span><br><span class="line"><span class="comment">// do something</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-参考文档"><a href="#4-参考文档" class="headerlink" title="4.参考文档"></a>4.参考文档</h3><p>《Java 核心技术 36 讲》</p>
 
       
 
@@ -253,7 +263,7 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">docker</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -272,18 +282,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2018/04/15/笔记本选购学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          笔记本选购学习笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/13/hadoop-java-heap-space/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hadoop java heap space</div>
+    <a href="/2019/02/14/「第12讲」-Java-有几种文件拷贝方式？哪一种最高效？/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">「第12讲」 Java 有几种文件拷贝方式？哪一种最高效？</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -322,7 +323,7 @@ ga('send', 'pageview');
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://freemeng.com/2018/04/14/docker初识/",
+  id: "http://freemeng.com/2019/02/15/「第13讲」接口和抽象类有什么区别-学习笔记/",
   owner: 'zmdstr',
   repo: 'blog_comment',
   oauth: {
