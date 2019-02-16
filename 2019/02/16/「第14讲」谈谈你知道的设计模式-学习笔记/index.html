@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>Archives: 2018/5 | Free Meng</title>
+  <title>「第14讲」谈谈你知道的设计模式|学习笔记 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Just Do It!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Free Meng">
-<meta property="og:url" content="http://freemeng.com/archives/2018/05/index.html">
+  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 14 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「第14讲」谈谈你知道的设计模式|学习笔记">
+<meta property="og:url" content="http://freemeng.com/2019/02/16/「第14讲」谈谈你知道的设计模式-学习笔记/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="Just Do It!">
+<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 14 篇学习笔记，坚持写完 36 讲学习笔记。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-16T08:52:39.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Meng">
-<meta name="twitter:description" content="Just Do It!">
+<meta name="twitter:title" content="「第14讲」谈谈你知道的设计模式|学习笔记">
+<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 14 篇学习笔记，坚持写完 36 讲学习笔记。">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -162,36 +164,100 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-「第14讲」谈谈你知道的设计模式-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      「第14讲」谈谈你知道的设计模式|学习笔记
+    </h1>
+  
+
+        
+        <a href="/2019/02/16/「第14讲」谈谈你知道的设计模式-学习笔记/" class="archive-article-date">
+  	<time datetime="2019-02-16T08:50:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-16</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 14 篇学习笔记，坚持写完 36 讲学习笔记。</p>
+</blockquote>
+<a id="more"></a>
+<p>理解和掌握典型的设计模式，有利于提高沟通、设计的效率和质量。</p>
+<h3 id="1-设计模式分类"><a href="#1-设计模式分类" class="headerlink" title="1. 设计模式分类"></a>1. 设计模式分类</h3><p>大致按照模式的应用目标分类，设计模式可以分为创建型模式、结构型模式和行为型模式。</p>
+<ul>
+<li><p>创建型模式，是对对象创建过程的各种问题和解决方案的总结，包括各种工厂模式（Factory、Abstract Factory）、单例模式（Singleton）、构建器模式（Builder）、原型模式（ProtoType）。</p>
+</li>
+<li><p>结构型模式，是针对软件设计结构的总结，关注于类、对象继承、组合方式的实践经验。常见的结构型模式，包括桥接模式（Bridge）、适配器模式（Adapter）、装饰者模式（Decorator）、代理模式（Proxy）、组合模式（Coposite）、外观模式（Facade）、享元模式（Flyweight）等。</p>
+</li>
+<li><p>行为型模式，是从类或对象之间交互、职责划分等角度总结的模式。比较常见的行为模式有策略模式（Strategy）、解释器模式（Interpreter）、命令模式（Command）、观察者模式（Observer）、迭代器模式（Iterator）、模版方法模式（Template Method）、访问者模式（Visitor）。</p>
+</li>
+</ul>
+<h3 id="2-单例设计模式"><a href="#2-单例设计模式" class="headerlink" title="2. 单例设计模式"></a>2. 单例设计模式</h3><p>第一版：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第一版没有私有构造，因此别人完全可以直接“new Singleton()”。<br>第二版：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二版就是单例了，是“饿汉式”，还能有什么改进么？标准库中很多地方使用懒加载（lazy-load），改善初始内存，单例同样使用，下面是第三版：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Singleton instance;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第三版，这个实现在单线程环境不存在问题，但是如果处于并发场景，就需要考虑线程安全，最熟悉的莫过于“双检锁”，其要点在于：</p>
+<ul>
+<li>valatile 能够保证可见性，以及保证 getInstance 返回的是初始化完全的对象。</li>
+<li>在同步之前进行 null 检查，以尽量避免进入相对昂贵的同步块。</li>
+<li>直接在 class 级别进行同步，保证线程安全的类方法调用。<br>第四版：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Singleton singleton = <span class="keyword">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getSingleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   	<span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123; <span class="comment">// 尽量避免重复进入同步块</span></span><br><span class="line">       	<span class="keyword">synchronized</span> (Singleton.class) &#123; <span class="comment">// 同步.class，意味着对同步类方法调用</span></span><br><span class="line">           	<span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;</span><br><span class="line">               	singleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">           	&#125;</span><br><span class="line">       	&#125;</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">return</span> singleton;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这第四版就是“饱汉式”，当然还有其它单例实现方式：枚举类、静态内部类等。上面是比较学究，其实实践中未必需要如此复杂，我们来看看 Java 核心类库自己的单例实现，比如 java.lang.Runtime。注意，它直接就是饿汉时，静态实例被声明为 final。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Runtime currentRuntime = <span class="keyword">new</span> Runtime();</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Version version;</span><br><span class="line"><span class="comment">// …</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Runtime <span class="title">getRuntime</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> currentRuntime;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/** Don't let anyone else instantiate this class */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Runtime</span><span class="params">()</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-Spring-中设计模式的应用"><a href="#3-Spring-中设计模式的应用" class="headerlink" title="3. Spring 中设计模式的应用"></a>3. Spring 中设计模式的应用</h3><ul>
+<li>BeanFactory 和 ApplicationContext 应用了工厂模式</li>
+<li>在 Bean 的创建中，Spring 也为不同 scope 定义的对象，提供了单例和原型等模式实现。</li>
+<li>AOP 领域则是使用了代理模式、装饰者模式、适配器模式等。</li>
+<li>各种事件监听器，是观察者模式的典型应用。</li>
+<li>类似 JdbcTemplate 等则是应用了模版方法模式。</li>
+</ul>
+<h3 id="4-其它"><a href="#4-其它" class="headerlink" title="4. 其它"></a>4. 其它</h3><p>设计模式，我之前阅读过《大话设计模式》，当时在《简书》上做了笔记，有时间整理一下，当时的代码在，<a href="https://github.com/zmdstr/design-pattern。" target="_blank" rel="noopener">https://github.com/zmdstr/design-pattern。</a></p>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h3><p>在学习开源框架的同时，学习设计模式是最好的方式。</p>
+<h3 id="6-参考文档"><a href="#6-参考文档" class="headerlink" title="6. 参考文档"></a>6. 参考文档</h3><p>《Java 核心技术 36 讲》</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的支持是我最大的动力！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/20/第4讲-强引用、软引用、弱引用、幻象引用有什么区别/" class="archive-article-date">
-  	<time datetime="2018-05-20T11:58:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/20/第4讲-强引用、软引用、弱引用、幻象引用有什么区别/">第4讲 强引用、软引用、弱引用、幻象引用有什么区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -203,171 +269,71 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/20/第3讲-谈谈-final、finally、finalize-有什么不同？/" class="archive-article-date">
-  	<time datetime="2018-05-20T01:44:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/15/「第13讲」接口和抽象类有什么区别-学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">「第13讲」接口和抽象类有什么区别|学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/20/第3讲-谈谈-final、finally、finalize-有什么不同？/">第3讲 谈谈 final、finally、finalize 有什么不同？</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/13/Java核心技术36讲学习笔记二/" class="archive-article-date">
-  	<time datetime="2018-05-13T01:08:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/13/Java核心技术36讲学习笔记二/">Java核心技术36讲学习笔记二</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/12/值得一看的-IDEA-快捷键说明/" class="archive-article-date">
-  	<time datetime="2018-05-12T14:34:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/12/值得一看的-IDEA-快捷键说明/">值得一看的 IDEA 快捷键说明</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">IDE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/08/Java核心技术36讲学习笔记一/" class="archive-article-date">
-  	<time datetime="2018-05-07T23:52:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
-</a>
-        </div>
-    	 
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://freemeng.com/2019/02/16/「第14讲」谈谈你知道的设计模式-学习笔记/",
+  owner: 'zmdstr',
+  repo: 'blog_comment',
+  oauth: {
+    client_id: 'a1eb5d9a3efb190d6dbc',
+    client_secret: 'b42b410f8d3cd1c982ac4010f749e18fb500a490',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/08/Java核心技术36讲学习笔记一/">Java核心技术36讲学习笔记一</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -390,8 +356,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
