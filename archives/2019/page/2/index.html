@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>正则表达式 | Free Meng</title>
+  <title>Archives: 2019 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="regex 正则表达式 首先贴出两个网址：第一个《正则表达式30分钟入门教程》http://deerchao.net/tutorials/regex/regex.htm第二个 在线正则测试网站http://tool.oschina.net/regex/">
-<meta name="keywords" content="正则">
-<meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式">
-<meta property="og:url" content="http://freemeng.com/2017/05/06/正则表达式/index.html">
+  <meta name="description" content="Just Do It!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Meng">
+<meta property="og:url" content="http://freemeng.com/archives/2019/page/2/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="regex 正则表达式 首先贴出两个网址：第一个《正则表达式30分钟入门教程》http://deerchao.net/tutorials/regex/regex.htm第二个 在线正则测试网站http://tool.oschina.net/regex/">
+<meta property="og:description" content="Just Do It!">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-22T10:23:04.411Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式">
-<meta name="twitter:description" content="regex 正则表达式 首先贴出两个网址：第一个《正则表达式30分钟入门教程》http://deerchao.net/tutorials/regex/regex.htm第二个 在线正则测试网站http://tool.oschina.net/regex/">
+<meta name="twitter:title" content="Free Meng">
+<meta name="twitter:description" content="Just Do It!">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -164,157 +162,63 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-正则表达式" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      正则表达式
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/01/19/代码精进之路学习笔记一/" class="archive-article-date">
+  	<time datetime="2019-01-19T03:33:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-19</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/01/19/代码精进之路学习笔记一/">代码精进之路学习笔记一</a>
     </h1>
   
 
-        
-        <a href="/2017/05/06/正则表达式/" class="archive-article-date">
-  	<time datetime="2017-05-06T13:56:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="regex-正则表达式"><a href="#regex-正则表达式" class="headerlink" title="regex 正则表达式"></a>regex 正则表达式</h1><hr>
-<p>首先贴出两个网址：<br>第一个《正则表达式30分钟入门教程》<br><a href="http://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="noopener">http://deerchao.net/tutorials/regex/regex.htm</a><br>第二个 在线正则测试网站<br><a href="http://tool.oschina.net/regex/" target="_blank" rel="noopener">http://tool.oschina.net/regex/</a><br><a id="more"></a></p>
-<h2 id="what-is-regex"><a href="#what-is-regex" class="headerlink" title="what is regex?"></a>what is regex?</h2><p>正则表达式就是 <strong>字符串规则</strong><br>使用正则表达式，就是<br>1.为了找到符合规则的字符串，例如爬虫中的应用；<br>2.为了验证字符串是否符合规则，例如用户表单校验。</p>
-<h2 id="base-Content"><a href="#base-Content" class="headerlink" title="base Content"></a>base Content</h2><blockquote>
-<p>^匹配你要用来查找的字符串的开头，$匹配结尾。<br>javascript 中使用要使用 // 对表达式进行包裹，java 中直接使用即可。<br>javascript 使用例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^[a-zA-Z0<span class="number">-9</span>]&#123;<span class="number">6</span>,<span class="number">20</span>&#125;$/</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h1 id="project-example"><a href="#project-example" class="headerlink" title="project example"></a>project example</h1><p>以下内容为自己项目中使用过的正则表达式<br>java中应用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:手机号码校验</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@time</span>:2016年12月14日 下午12:41:41</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">telephoneNumCheck</span><span class="params">(String telephoneNum)</span> </span>&#123;</span><br><span class="line">	Pattern p = Pattern</span><br><span class="line">			.compile(<span class="string">"^(((13[0-9]&#123;1&#125;)|(15[0-9]&#123;1&#125;)|(17[0-9]&#123;1&#125;)|(18[0-9]&#123;1&#125;))+\\d&#123;8&#125;)$"</span>);</span><br><span class="line">	Matcher m = p.matcher(telephoneNum);</span><br><span class="line">	<span class="keyword">return</span> m.matches();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:身份证号码校验</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@time</span>:2016年12月14日 下午12:43:05</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">idCardNumCheck</span><span class="params">(String idCardNum)</span> </span>&#123;</span><br><span class="line">	Pattern p = Pattern</span><br><span class="line">			.compile(<span class="string">"^(^[1-9]\\d&#123;7&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d&#123;3&#125;$)|(^[1-9]\\d&#123;5&#125;[1-9]\\d&#123;3&#125;((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])((\\d&#123;4&#125;)|\\d&#123;3&#125;[Xx])$)$"</span>);</span><br><span class="line">	Matcher m = p.matcher(idCardNum);</span><br><span class="line">	<span class="keyword">if</span> (m.matches()) &#123;</span><br><span class="line">		<span class="keyword">if</span> (idCardNum.length() == <span class="number">18</span>) &#123;</span><br><span class="line">			Integer[] idCardWi = &#123; <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">10</span>,</span><br><span class="line">					<span class="number">5</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span> &#125;;</span><br><span class="line">			<span class="comment">// 这是除以11后，可能产生的11位余数、验证码，也保存成数组</span></span><br><span class="line">			Integer[] idCardY = &#123; <span class="number">1</span>, <span class="number">0</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span> &#125;;</span><br><span class="line">			<span class="comment">// 用来保存前17位各自乖以加权因子后的总和</span></span><br><span class="line">			Integer idCardWiSum = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">17</span>; i++) &#123;</span><br><span class="line">				idCardWiSum += Integer.parseInt(idCardNum.substring(i,</span><br><span class="line">						i + <span class="number">1</span>)) * idCardWi[i];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">int</span> idCardMod = idCardWiSum % <span class="number">11</span>;<span class="comment">// 计算出校验码所在数组的位置</span></span><br><span class="line">			String idCardLast = idCardNum.substring(<span class="number">17</span>);<span class="comment">// 得到最后一位身份证号码</span></span><br><span class="line">			<span class="keyword">if</span> (idCardMod == <span class="number">2</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span> (<span class="string">"X"</span>.equals(idCardLast) || <span class="string">"x"</span>.equals(idCardLast)) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="comment">// 用计算出的验证码与最后一位身份证号码匹配，如果一致，说明通过，否则是无效的身份证号码</span></span><br><span class="line">				<span class="keyword">if</span> (Integer.parseInt(idCardLast) == idCardY[idCardMod]) &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:邮编校验</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@time</span>:2016年12月14日 下午2:01:21</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">zipCodeCheck</span><span class="params">(String zipCode)</span> </span>&#123;</span><br><span class="line">	Pattern p = Pattern.compile(<span class="string">"^[1-9]\\d&#123;5&#125;$"</span>);</span><br><span class="line">	Matcher m = p.matcher(zipCode);</span><br><span class="line">	<span class="keyword">return</span> m.matches();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:身份证姓名校验</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@time</span>:2016年12月14日 下午2:23:49</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">nameCheck</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">	Pattern p = Pattern</span><br><span class="line">			.compile(<span class="string">"[\\u4E00-\\u9FA5]&#123;2,5&#125;(?:·[\\u4E00-\\u9FA5]&#123;2,5&#125;)*"</span>);</span><br><span class="line">	Matcher m = p.matcher(name);</span><br><span class="line">	<span class="keyword">return</span> m.matches();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 过滤特殊字符</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> str</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String  <span class="title">specialCharacterFilter</span><span class="params">(String str)</span></span>&#123;</span><br><span class="line">	String regEx = <span class="string">"[`~!@#$%^&amp;*()+=|&#123;&#125;':;',\\[\\].&lt;&gt;/?~！@#￥%……&amp;*（）——+|&#123;&#125;【】‘；：”“’。，、？]"</span>;</span><br><span class="line">	Pattern p = Pattern.compile(regEx);</span><br><span class="line"></span><br><span class="line">	Matcher m = p.matcher(str);</span><br><span class="line">	<span class="keyword">return</span> m.replaceAll(<span class="string">""</span>).trim(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>javascript 应用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**校验手机号*/</span></span><br><span class="line">$.validator.addMethod(<span class="string">"mobilePhone"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> myreg = <span class="regexp">/^(((13[0-9]&#123;1&#125;)|(15[0-9]&#123;1&#125;)|(17[0-9]&#123;1&#125;)|(18[0-9]&#123;1&#125;))+\d&#123;8&#125;)$/</span>;</span><br><span class="line">	<span class="keyword">if</span>(myreg.test(value))&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,<span class="string">"请输入正确的手机号码"</span>);</span><br><span class="line"><span class="comment">/**校验长度*/</span></span><br><span class="line">$.validator.addMethod(<span class="string">"checkNameLen"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="regexp">/^[\u4e00-\u9fa5a-zA-Z0-9]&#123;2,20&#125;$/</span>.test(value)) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;, <span class="string">"请输入2-20个汉字或2-20位字符,不包含特殊字符"</span>);</span><br><span class="line"><span class="comment">/**校验长度*/</span></span><br><span class="line">$.validator.addMethod(<span class="string">"checkUnameLen"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="regexp">/^[a-zA-Z0-9]&#123;6,20&#125;$/</span>.test(value))&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;, <span class="string">"请输入6-20位字符,不包含汉字及特殊字符"</span>);</span><br><span class="line"><span class="comment">/**密码校验**/</span></span><br><span class="line">$.validator.addMethod(<span class="string">"checkPassword"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(<span class="regexp">/^[a-zA-Z0-9_]&#123;6,20&#125;$/</span>.test(value))&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;, <span class="string">"请输入6-20位数字、字母或下划线"</span>);</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 校验全局唯一用户名</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">$.validator.addMethod(<span class="string">"primaryUname"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value, element</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> succ = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span>($(<span class="string">"#customerId"</span>).val()!=<span class="string">""</span>)&#123;</span><br><span class="line">		succ = <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> username=$(<span class="string">"#uname"</span>).val();</span><br><span class="line">	<span class="keyword">if</span>(username == value)&#123;</span><br><span class="line">		succ=<span class="literal">true</span></span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	$.ajax(&#123;</span><br><span class="line">		type : <span class="string">"POST"</span>,</span><br><span class="line">		url : unameCkeckPath,</span><br><span class="line">		data : &#123;<span class="attr">nickName</span> : value&#125;,</span><br><span class="line">		<span class="keyword">async</span> : <span class="literal">false</span>,</span><br><span class="line">		success : <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</span><br><span class="line">			<span class="keyword">if</span> (msg == <span class="string">"succ"</span>) &#123;</span><br><span class="line">				succ = <span class="literal">true</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);&#125;</span><br><span class="line">	<span class="keyword">return</span> succ;</span><br><span class="line">&#125;, <span class="string">"账户名已存在"</span>);</span><br><span class="line"></span><br><span class="line">$.validator.addMethod(<span class="string">"pwdEqUname"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> username = $(<span class="string">"#userName"</span>).val();</span><br><span class="line">	<span class="keyword">if</span> (value != username) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, <span class="string">"密码不能和用户名一样"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//检查第二次输入密码是否与上面的一样</span></span><br><span class="line">$.validator.addMethod(<span class="string">"repassEqual"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> pwd1 = $(<span class="string">"#loginPassword"</span>).val();</span><br><span class="line">	<span class="keyword">var</span> pwd2 = value;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (pwd1==pwd2) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, <span class="string">"两次输入密码不一样"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查邮箱，为空不检查</span></span><br><span class="line">$.validator.addMethod(<span class="string">"email"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> isNul = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span>(!value)&#123;isNul = <span class="literal">true</span>&#125;</span><br><span class="line">	<span class="keyword">return</span> isNul || <span class="regexp">/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/</span>.test(value);</span><br><span class="line">&#125;, <span class="string">"请输入正确的邮箱"</span>);</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的支持是我最大的动力！<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/zhifubao.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">正则</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">代码精进之路</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/06/03/我的数字资产保护/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          我的数字资产保护
-        
-      </div>
-    </a>
   
   
-    <a href="/2017/03/18/单例设计模式学习/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">单例设计模式学习</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
-<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "http://freemeng.com/2017/05/06/正则表达式/",
-  owner: 'zmdstr',
-  repo: 'blog_comment',
-  oauth: {
-    client_id: 'a1eb5d9a3efb190d6dbc',
-    client_secret: 'b42b410f8d3cd1c982ac4010f749e18fb500a490',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2019/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -338,8 +242,8 @@ gitment.render('gitment-ctn')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
