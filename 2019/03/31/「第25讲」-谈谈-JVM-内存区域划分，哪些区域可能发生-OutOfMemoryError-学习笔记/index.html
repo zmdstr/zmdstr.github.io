@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>一次 redis 连接超时排查 | Free Meng</title>
+  <title>「第25讲」 谈谈 JVM 内存区域划分，哪些区域可能发生 OutOfMemoryError?|学习笔记 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="errorredis 连接超时1Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: connect timed out">
-<meta name="keywords" content="redis">
+  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 25 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一次 redis 连接超时排查">
-<meta property="og:url" content="http://freemeng.com/2017/10/14/一次-redis-连接超时排查/index.html">
+<meta property="og:title" content="「第25讲」 谈谈 JVM 内存区域划分，哪些区域可能发生 OutOfMemoryError?|学习笔记">
+<meta property="og:url" content="http://freemeng.com/2019/03/31/「第25讲」-谈谈-JVM-内存区域划分，哪些区域可能发生-OutOfMemoryError-学习笔记/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="errorredis 连接超时1Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: connect timed out">
+<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 25 篇学习笔记，坚持写完 36 讲学习笔记。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-22T10:23:04.000Z">
+<meta property="og:updated_time" content="2019-03-31T10:22:11.796Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一次 redis 连接超时排查">
-<meta name="twitter:description" content="errorredis 连接超时1Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: connect timed out">
+<meta name="twitter:title" content="「第25讲」 谈谈 JVM 内存区域划分，哪些区域可能发生 OutOfMemoryError?|学习笔记">
+<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 25 篇学习笔记，坚持写完 36 讲学习笔记。">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -164,37 +164,61 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-一次-redis-连接超时排查" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-「第25讲」-谈谈-JVM-内存区域划分，哪些区域可能发生-OutOfMemoryError-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      一次 redis 连接超时排查
+      「第25讲」 谈谈 JVM 内存区域划分，哪些区域可能发生 OutOfMemoryError?|学习笔记
     </h1>
   
 
         
-        <a href="/2017/10/14/一次-redis-连接超时排查/" class="archive-article-date">
-  	<time datetime="2017-10-14T13:06:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-14</time>
+        <a href="/2019/03/31/「第25讲」-谈谈-JVM-内存区域划分，哪些区域可能发生-OutOfMemoryError-学习笔记/" class="archive-article-date">
+  	<time datetime="2019-03-31T10:20:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>error<br>redis 连接超时<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Caused by: redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: connect timed out</span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 25 篇学习笔记，坚持写完 36 讲学习笔记。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="1-JVM-内存区域的划分"><a href="#1-JVM-内存区域的划分" class="headerlink" title="1. JVM 内存区域的划分"></a>1. JVM 内存区域的划分</h3><ul>
+<li><p>程序计数器（PC,Program Counter Register）<br>程序计数器会存储<strong>当前线程</strong>正在执行的 Java <strong>方法的 JVM 指令地址</strong>，如果是在执行本地方法，则是未指定值（undefine）。<br>在 JVM 规范中，每个线程都有它自己的程序计数器，并且任何时间一个线程都只有一个方法在执行，即当前方法。</p>
+</li>
+<li><p>Java 虚拟机栈(Java Virtual Machine Stack)<br>每个线程在创建时都会创建一个虚拟机栈，其内部保存一个个的栈帧（Stack Frame）,对应着一次次的 Java 方法调用。<br>在一个时间点，对应的只会有一个活动的栈帧，通常叫作当前帧，方法所在的类叫作当前类。<br>栈帧中存储着局部变量表、操作数栈、动态链接、方法正常退出或者异常退出的定义等。</p>
+</li>
+<li><p>本地方法栈（Native Method Stack）<br>与 Java 虚拟机栈类似，支持对<strong>本地方法</strong>的调用，也是每个线程都会创建一个。</p>
+</li>
+<li><p>堆(Heap)<br>它是 JVM 内存管理的核心区域，GC 堆，用来放置 Java 对象实例。<br>堆，被<strong>所有线程共享</strong>。</p>
+</li>
+<li><p>方法区（Method Area）<br>用于存储所谓的元（Meta）数据，例如类结构信息，以及对应的运行时常量池、字段、方法代码等。<br>方法区，<strong>被所有线程共享</strong>。</p>
+</li>
+<li><p>运行时常量池（Run-Time Constant Pool）<br><strong>是方法区的一部分</strong>。存放各种常量信息，不管是编译器生成的各种字面量，还是需要在运行时决定的符号引用。</p>
 </li>
 </ul>
-<a id="more"></a>
+<h3 id="2-Java-进程内存占用"><a href="#2-Java-进程内存占用" class="headerlink" title="2. Java 进程内存占用"></a>2. Java 进程内存占用</h3><p>第 1 点，是 JVM 规范中定义的 JVM 运行时内存占用，规范侧重的是通用的、无差别的部分，对于应用开发者来说，只要是 JVM 进程在运行时会占用，都会影响到我们的工程实践。因此需要补充两点：</p>
 <ul>
-<li>排查过程<br>由于是突然发生，代码没有任何改变，所以没有去检查代码及 redis 连接的配置。<br>1.现象<br>开发环境(我的本地)连接超时，但是测试环境(云环境 redis 安装环境)连接的是同一个 redis，代码都一样，连接正常。<br>开发环境使用 rediscli 客户端，连接超时。<br>2.telnet 测试<br>开发环境 telnet  redis 所在服务器端口，无法建立连接<br>测试环境 telnet redis 所在服务器端口，可以正常建立连接<br>初步确认应该是防火墙问题。<br>我们的服务器是在某云上的，先去云上看了一下防火墙端口设置，没问题。然后去看了物理机 CentOs 系统的防火墙也没问题。<br>突发奇想，使用开发环境连接手机热点，telnet OK，启动项目连接正常，难道，公司网络部做了限制。。。</li>
-<li>解决方法<br>经确定，公司网络部对端口进行了限制，所以更改了服务器上 redis 的端口，解决了此问题。</li>
-<li>总结<br>我这个情况是突发，如果你的 redis 刚搭建，配置完就报连接超时的错误，要去看看 redis 配置文件中的下面两个配置：</li>
+<li><p>直接内存（Direct Memory）<br>Direct Buffer 所直接分配的内存。</p>
+</li>
+<li><p>Code Cache<br>JVM 本身是个本地程序，还需要其他的内存去完成各种基本任务，比如，JIT Compiler 在运行时对热点方法进行编译，就会将编译后的方法存储在 Code Cache 里面；GC 等功能需要运行在本地线程之中，类似部分都要占用内存空间。</p>
+</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#bind 127.0.0.1 #绑定 ip</span><br><span class="line">protected-mode no #保护模式</span><br></pre></td></tr></table></figure>
+<h3 id="3-哪些区域可能发生-OOM"><a href="#3-哪些区域可能发生-OOM" class="headerlink" title="3. 哪些区域可能发生 OOM"></a>3. 哪些区域可能发生 OOM</h3><p>OOM 就是 JVM 内存不够用了，即没有空闲内存，并且垃圾收集器也无法提供更多内存。</p>
+<p><strong>除了程序计数器</strong>，其他区域都可能会因为可能的空间不足发生 OOM 。</p>
+<ul>
+<li><p>堆<br>错误信息：”java.lang.OutOfMemoryError:Java heap space”<br>原因：可能存在内存泄露问题、可能堆的大小不合理</p>
+</li>
+<li><p>Java 虚拟机栈和本地方法栈<br>错误信息：”StackOverFlowError” “OutOfMemoryError”<br>原因：可能由于不断的进行递归调用</p>
+</li>
+</ul>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>画个图就很直观了，《Java 核心技术 36 讲》的图真的不错。</p>
+<h3 id="5-参考文档"><a href="#5-参考文档" class="headerlink" title="5. 参考文档"></a>5. 参考文档</h3><p>《Java 核心技术 36 讲》</p>
 
       
 
@@ -239,7 +263,7 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -258,18 +282,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2018/03/11/关于目标/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          关于目标
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/19/使用-idea-debug-远程-tomcat/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">使用 idea debug 远程 tomcat</div>
+    <a href="/2019/03/01/「第15讲」-synchronized-和-ReentrantLock-有什么区别-学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">「第15讲」 synchronized 和 ReentrantLock 有什么区别|学习笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -308,7 +323,7 @@ ga('send', 'pageview');
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://freemeng.com/2017/10/14/一次-redis-连接超时排查/",
+  id: "http://freemeng.com/2019/03/31/「第25讲」-谈谈-JVM-内存区域划分，哪些区域可能发生-OutOfMemoryError-学习笔记/",
   owner: 'zmdstr',
   repo: 'blog_comment',
   oauth: {
