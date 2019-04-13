@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>Archives | Free Meng</title>
+  <title>「第26讲」 如何监控和诊断 JVM 堆内和对外内存使用？|学习笔记 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Just Do It!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Free Meng">
-<meta property="og:url" content="http://freemeng.com/archives/page/4/index.html">
+  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 26 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「第26讲」 如何监控和诊断 JVM 堆内和对外内存使用？|学习笔记">
+<meta property="og:url" content="http://freemeng.com/2019/04/13/「第26讲」-如何监控和诊断-JVM-堆内和对外内存使用？-学习笔记/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="Just Do It!">
+<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 26 篇学习笔记，坚持写完 36 讲学习笔记。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-13T05:18:18.600Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Meng">
-<meta name="twitter:description" content="Just Do It!">
+<meta name="twitter:title" content="「第26讲」 如何监控和诊断 JVM 堆内和对外内存使用？|学习笔记">
+<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 26 篇学习笔记，坚持写完 36 讲学习笔记。">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -162,415 +164,159 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-「第26讲」-如何监控和诊断-JVM-堆内和对外内存使用？-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      「第26讲」 如何监控和诊断 JVM 堆内和对外内存使用？|学习笔记
+    </h1>
+  
+
+        
+        <a href="/2019/04/13/「第26讲」-如何监控和诊断-JVM-堆内和对外内存使用？-学习笔记/" class="archive-article-date">
+  	<time datetime="2019-04-13T05:14:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-13</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 26 篇学习笔记，坚持写完 36 讲学习笔记。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="1-工具"><a href="#1-工具" class="headerlink" title="1. 工具"></a>1. 工具</h3><ul>
+<li><p>综合性的图形化工具</p>
+<ul>
+<li>JConsole</li>
+<li>VisualVM</li>
+</ul>
+</li>
+<li><p>命令行工具</p>
+<ul>
+<li>jstat</li>
+<li>jmap</li>
+</ul>
+</li>
+<li><p>Java Mission Control(JMC)<br>不仅仅能够使用 JMX 进行普通的管理、监控任务，还可以配合 Java Flight Recorder(JFR)技术，以非常低的开销，收集和分析 JVM 底层的 Profiling 和事件等信息。</p>
+</li>
+</ul>
+<p>一个特殊的部分，就是堆外内存中的直接内存，前面的工具基本不适用，使用 Native Memory Tracking (NMT)，它会从 JVM 本地内存分配的角度进行解读。</p>
+<h3 id="2-堆内部结构"><a href="#2-堆内部结构" class="headerlink" title="2. 堆内部结构"></a>2. 堆内部结构</h3><p>按照 GC 年代划分，Java 堆分为：</p>
+<p>1.新生代(Young Generation)<br>新生代是大部分对象创建和销毁的区域。</p>
+<ul>
+<li><p>Eden[‘i:dn]<br>伊甸园，对象初始分配的区域。</p>
+</li>
+<li><p>Survivor[sərˈvaɪvə(r)]<br>幸存者，用来放置从 Minor[ˈmaɪnɚ]GC 中保留下来的对象。</p>
+</li>
+</ul>
+<p>2.老年代(Old Generation)<br>放置长生命周期对象，通常都是从 Survivor 区域拷贝过来的对象。<br>如果对象太大，完全无法在新生代找到足够长的连续空闲空间，JVM 就会直接分配到老年代。</p>
+<p>3.永久代(Permenent Generation)<br>早期 Hotspot JVM 方法区的实现方式，jdk 8 以后就没有了。</p>
+<h3 id="3-JVM-参数"><a href="#3-JVM-参数" class="headerlink" title="3. JVM 参数"></a>3. JVM 参数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.最大堆体积</span><br><span class="line">-Xmx value</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.初始最小堆体积</span><br><span class="line">-Xms value</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.老年代和新生代的比例</span><br><span class="line">-XX:NewRatio=value</span><br><span class="line">默认数值是 <span class="number">2</span>，即老年代是新生代的 <span class="number">2</span> 倍，即新生代是堆的 <span class="number">1</span>/<span class="number">3</span>。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.直接设置新生代大小</span><br><span class="line">-XX:NewSize=value</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.Eden 和 Survivor 的比例</span><br><span class="line">-XX:SurvivorRatio=value</span><br><span class="line">如果这个数值是 <span class="number">8</span>，即 Eden 是 Survivor 的 <span class="number">8</span> 倍</span><br></pre></td></tr></table></figure>
+<p>在 JVM 内部，如果 -Xms 小于 -Xmx，堆的大小并不会直接扩展到上限，当内存需求不断增加后，JVM 会逐渐扩展新生代等区域的大小。</p>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>堆内部按照 GC 年代划分，分为新生代、老年代及永久代（jdk 8 以后已经没了），新生代中分为 Eden 和 Survior。</p>
+<h3 id="5-参考文档"><a href="#5-参考文档" class="headerlink" title="5. 参考文档"></a>5. 参考文档</h3><p>《Java 核心技术 36 讲》</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的支持是我最大的动力！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/02/Python-Demo-定投基金小工具-优化一/" class="archive-article-date">
-  	<time datetime="2018-04-02T14:22:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/02/Python-Demo-定投基金小工具-优化一/">Python Demo(定投基金小工具)优化一</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/02/Python-Demo-定投基金小工具/" class="archive-article-date">
-  	<time datetime="2018-04-02T13:39:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/02/Python-Demo-定投基金小工具/">Python Demo(定投基金小工具)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/11/关于目标/" class="archive-article-date">
-  	<time datetime="2018-03-11T11:24:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/11/关于目标/">关于目标</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/14/一次-redis-连接超时排查/" class="archive-article-date">
-  	<time datetime="2017-10-14T13:06:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/14/一次-redis-连接超时排查/">一次 redis 连接超时排查</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/19/使用-idea-debug-远程-tomcat/" class="archive-article-date">
-  	<time datetime="2017-08-19T00:45:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-19</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/31/「第25讲」-谈谈-JVM-内存区域划分，哪些区域可能发生-OutOfMemoryError-学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">「第25讲」 谈谈 JVM 内存区域划分，哪些区域可能发生 OutOfMemoryError?|学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/19/使用-idea-debug-远程-tomcat/">使用 idea debug 远程 tomcat</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">tomcat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/26/Java不仅仅是一门编程语言/" class="archive-article-date">
-  	<time datetime="2017-06-26T14:28:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/26/Java不仅仅是一门编程语言/">Java不仅仅是一门编程语言</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java虚拟机</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/25/2016年流行的UI框架/" class="archive-article-date">
-  	<time datetime="2017-06-25T08:42:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/25/2016年流行的UI框架/">2016年流行的UI框架</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/25/孔雀鱼/" class="archive-article-date">
-  	<time datetime="2017-06-25T03:02:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/25/孔雀鱼/">孔雀鱼</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/24/时间戳转-Date-字符串出现误差/" class="archive-article-date">
-  	<time datetime="2017-06-24T09:44:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/24/时间戳转-Date-字符串出现误差/">时间戳转_Date_字符串出现误差</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/24/input-file上传美化/" class="archive-article-date">
-  	<time datetime="2017-06-24T09:39:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/24/input-file上传美化/">input_file上传美化</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><a class="extend next" rel="next" href="/archives/page/5/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -594,8 +340,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
