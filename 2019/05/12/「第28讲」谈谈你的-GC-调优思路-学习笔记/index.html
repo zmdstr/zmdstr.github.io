@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>Tag: Java虚拟机 | Free Meng</title>
+  <title>「第28讲」谈谈你的 GC 调优思路|学习笔记 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Just Do It!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Free Meng">
-<meta property="og:url" content="http://freemeng.com/tags/Java虚拟机/index.html">
+  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 28 篇学习笔记，坚持写完 36 讲学习笔记。GC 调优还是得具体问题具体分析，下文为整理的基础思路。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「第28讲」谈谈你的 GC 调优思路|学习笔记">
+<meta property="og:url" content="http://freemeng.com/2019/05/12/「第28讲」谈谈你的-GC-调优思路-学习笔记/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="Just Do It!">
+<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 28 篇学习笔记，坚持写完 36 讲学习笔记。GC 调优还是得具体问题具体分析，下文为整理的基础思路。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-12T02:32:08.364Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Free Meng">
-<meta name="twitter:description" content="Just Do It!">
+<meta name="twitter:title" content="「第28讲」谈谈你的 GC 调优思路|学习笔记">
+<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 28 篇学习笔记，坚持写完 36 讲学习笔记。GC 调优还是得具体问题具体分析，下文为整理的基础思路。">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -162,60 +164,158 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-「第28讲」谈谈你的-GC-调优思路-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/28/走近Java/" class="archive-article-date">
-  	<time datetime="2018-07-28T06:45:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/28/走近Java/">走近 Java</a>
+    <h1 class="article-title" itemprop="name">
+      「第28讲」谈谈你的 GC 调优思路|学习笔记
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/05/12/「第28讲」谈谈你的-GC-调优思路-学习笔记/" class="archive-article-date">
+  	<time datetime="2019-05-12T02:30:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 28 篇学习笔记，坚持写完 36 讲学习笔记。<br>GC 调优还是得具体问题具体分析，下文为整理的基础思路。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="1-基本的调优思路"><a href="#1-基本的调优思路" class="headerlink" title="1. 基本的调优思路"></a>1. 基本的调优思路</h3><ul>
+<li><p>理解应用需求和问题，确定调优目标。<br>假设，我们的应用偶尔会出现性能抖动，出现较长的服务停顿。我们可以将目标简化为，GC 暂停尽量控制在 200ms 以内。</p>
+</li>
+<li><p>掌握 JVM 和 GC 的状态，定位具体的问题，确定真的有 GC 调优的必要。方法：通过 jstat 等工具查看 GC 等相关状态，开启 GC 日志等。</p>
+</li>
+<li><p>考虑 GC 类型是否符合我们的应用特征，如果符合，目前的问题是 Minor GC 过长，还是其他什么问题，如果不符合，是否可以切换其他 GC。</p>
+</li>
+<li><p>通过分析确定具体调整的参数或者软硬件配置。</p>
+</li>
+<li><p>验证是否达到调优目标，否则继续调优。</p>
+</li>
+</ul>
+<h3 id="2-调优建议"><a href="#2-调优建议" class="headerlink" title="2. 调优建议"></a>2. 调优建议</h3><ul>
+<li><p>建议尽量升级到较新 JDK 版本；</p>
+</li>
+<li><p>掌握 GC 调优信息收集途径；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.-XX:+PrintGCDetails</span><br><span class="line"><span class="number">2</span>.-XX:+PrintGCDateStamps</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-通用实践-G1"><a href="#3-通用实践-G1" class="headerlink" title="3. 通用实践(G1)"></a>3. 通用实践(G1)</h3><ul>
+<li><p>如果发现 Young GC 非常耗时，这可能是因为新生代太大了，我们可以考虑减小新生代的最小比例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:G1NewSizePercent</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果 Mixed GC 延迟较长，可以减少一次处理的 region 个数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:G1OldCSetRegionThresholdPercent</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>也可以提高 Mixed GC 的个数。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:G1MixedGCCountTarget</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-参考文档"><a href="#4-参考文档" class="headerlink" title="4. 参考文档"></a>4. 参考文档</h3><p>《Java 核心技术 36 讲》</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的支持是我最大的动力！<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Java虚拟机</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/04/21/「第27讲」Java-常见的垃圾收集器有哪些？-学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">「第27讲」Java 常见的垃圾收集器有哪些？|学习笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -238,9 +338,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -518,15 +618,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <div class="pswp__caption">
                 <div class="pswp__caption__center"></div>
             </div>
-
-        </div>
-
-    </div>
-
-</div>
-  </div>
-</body>
-</html>    </div>
 
         </div>
 
