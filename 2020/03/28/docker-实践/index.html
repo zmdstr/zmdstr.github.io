@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>「第3讲」谈谈 final、finally、finalize 有什么不同|学习笔记？ | Free Meng</title>
+  <title>docker 实践 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第三篇学习笔记，目前 app 已经更新到第七讲，我得抓紧学习了，坚持写完 36 讲学习笔记。">
-<meta name="keywords" content="Java">
+  <meta name="description" content="之前学习了 Docker，但是一直没实际去使用它，平时使用 Zookeeper、ES 等，都是在 mac OS 下载直接使用的，本着学以致用的态度，近期准备将平时使用的服务，全部迁移到 Docker。">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「第3讲」谈谈 final、finally、finalize 有什么不同|学习笔记？">
-<meta property="og:url" content="http://freemeng.com/2018/05/20/「第3讲」谈谈-final、finally、finalize-有什么不同？-学习笔记/index.html">
+<meta property="og:title" content="docker 实践">
+<meta property="og:url" content="http://freemeng.com/2020/03/28/docker-实践/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第三篇学习笔记，目前 app 已经更新到第七讲，我得抓紧学习了，坚持写完 36 讲学习笔记。">
+<meta property="og:description" content="之前学习了 Docker，但是一直没实际去使用它，平时使用 Zookeeper、ES 等，都是在 mac OS 下载直接使用的，本着学以致用的态度，近期准备将平时使用的服务，全部迁移到 Docker。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-30T14:32:35.008Z">
+<meta property="og:updated_time" content="2020-03-28T11:47:01.019Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「第3讲」谈谈 final、finally、finalize 有什么不同|学习笔记？">
-<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第三篇学习笔记，目前 app 已经更新到第七讲，我得抓紧学习了，坚持写完 36 讲学习笔记。">
+<meta name="twitter:title" content="docker 实践">
+<meta name="twitter:description" content="之前学习了 Docker，但是一直没实际去使用它，平时使用 Zookeeper、ES 等，都是在 mac OS 下载直接使用的，本着学以致用的态度，近期准备将平时使用的服务，全部迁移到 Docker。">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -164,20 +164,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-「第3讲」谈谈-final、finally、finalize-有什么不同？-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-docker-实践" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      「第3讲」谈谈 final、finally、finalize 有什么不同|学习笔记？
+      docker 实践
     </h1>
   
 
         
-        <a href="/2018/05/20/「第3讲」谈谈-final、finally、finalize-有什么不同？-学习笔记/" class="archive-article-date">
-  	<time datetime="2018-05-20T01:44:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
+        <a href="/2020/03/28/docker-实践/" class="archive-article-date">
+  	<time datetime="2020-03-28T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
 </a>
         
       </header>
@@ -185,30 +185,41 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第三篇学习笔记，目前 app 已经更新到第七讲，我得抓紧学习了，坚持写完 36 讲学习笔记。</p>
+<p>之前学习了 Docker，但是一直没实际去使用它，平时使用 Zookeeper、ES 等，都是在 mac OS 下载直接使用的，本着学以致用的态度，近期准备将平时使用的服务，全部迁移到 Docker。</p>
 </blockquote>
 <a id="more"></a>
-<p>都说程序员需要会英语，这个题，直接扔来三个单词，还长得这么像，什么不同？第一个形容词，第二个副词，第三个动词，哈哈，回答完毕。</p>
+<blockquote>
+<p>今天就从 ZooKeeper 开始，毕竟使用 Dubbo，Kafka 都可能需要依赖一个 ZooKeeper。如果只是启用一个 ZooKeeper Docker 容器，那太简单了，本文最终将编排一个项目，包括两个服务：一个 ZooKeeper，一个 zkui(ZooKeeper 可视化工具)。</p>
+<p>内容主要为实践，理论较少，需要一定 Docker 基础。</p>
+</blockquote>
+<h4 id="Dockerfile-学习"><a href="#Dockerfile-学习" class="headerlink" title="Dockerfile 学习"></a>Dockerfile 学习</h4><p>如何让我们的项目，以 Docker 镜像的方式运行？答案是编写 Dockerfile。👌，让我们去看看 zkui 的 Dockerfile，项目地址：<a href="https://github.com/DeemOpen/zkui/" target="_blank" rel="noopener">https://github.com/DeemOpen/zkui/</a></p>
+<p>进入 到 docker 目录，就可以看到 Dockerfile 文件，其内容为：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">MAINTAINER</span> Miguel Garcia Puyol &lt;miguelpuyol@gmail.com&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span> /var/app</span><br><span class="line"></span><br><span class="line">ADD zkui-*.jar /var/app/zkui.jar</span><br><span class="line">ADD config.cfg /var/app/config.cfg</span><br><span class="line">ADD bootstrap.sh /var/app/bootstrap.sh</span><br><span class="line"></span><br><span class="line">ENTRYPOINT ["/var/app/bootstrap.sh"]</span><br><span class="line"></span><br><span class="line">EXPOSE 9090</span><br></pre></td></tr></table></figure>
+<p>简单解释一下</p>
 <ul>
-<li>典型回答</li>
+<li>FROM 指定基础镜像</li>
+<li>MAINTAINER 维护者</li>
+<li>WORKDIR 指定工作目录</li>
+<li>ADD 更高级的复制文件，建议使用 COPY 替代</li>
+<li>ENTRYPOINT 入口点，指定启动容器时，所运行的程序</li>
+<li>EXPOSE 申明端口</li>
 </ul>
-<ol>
-<li>final 表示“这是无法改变的”，可以用来修饰类、方法、变量，final 修饰的类不可以被继承，final 修饰的方法不可以覆盖，final 修饰的变量不可以修改。</li>
-<li>finally 常见于 try-finally 或者 try-catch-finally，是 Java 保证重点代码一定要执行的一种机制，可以用来类似关闭 JDBC 连接、保证 unlock 锁等动作。</li>
-<li>finalize 是 java.lang.Object 的一个方法，它的设计目的是保证对象在被垃圾收集前完成特定资源的回收。finalize 机制现在已经不推荐使用，并且在 JDK 9 开始被被标记为 deprecated。</li>
-</ol>
-<ul>
-<li>拓展</li>
-</ul>
-<ol>
-<li>final<br>对于基本类型，final 使数值恒定不变，而用于对象引用，final 使引用恒定不变。一旦引用被初始化指向一个对象，就无法把它改为指向另一个对象。<br>只有在想明确禁止覆盖时，才将方法设置为 final 的。不要想着使用 final 方法来进行优化，因为现在虚拟机（特别是 hotspot 技术）已经进行了优化。<br>2.finally<br>当要把除内存之外的资源恢复到它们的初始状态时，就要用到 finally 子句。这种需要清理的资源包括：已经打开的文件或网络连接，在屏幕上画的图形，甚至可以是外部世界的某个开关。</li>
-</ol>
-<ul>
-<li><p>参考文档<br>《Java 编程思想》<br>《Java 核心技术36讲》</p>
-</li>
-<li><p>推荐阅读<br><a href="https://waylau.com/concise-try-with-resources-jdk9/" target="_blank" rel="noopener">在 JDK 9 中更简洁使用 try-with-resources 语句</a></p>
-</li>
-</ul>
+<p>总结一下这个 Dockerfile 的内容，基于基础镜像 java 8 ，往工作目录 /var/app 复制了，一个 jar 包，一个配置文件，一个启动脚本，最后声明端口 9090。下面，我们再看看那个启动脚本。</p>
+<h4 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line"></span><br><span class="line">ZK_SERVER=$&#123;ZK_SERVER:-"localhost:2181"&#125;</span><br><span class="line"></span><br><span class="line">USER_SET=$&#123;USER_SET:-"&#123;\"users\": [&#123; \"username\":\"admin\" , \"password\":\"manager\",\"role\": \"ADMIN\" \&#125;,&#123; \"username\":\"appconfig\" , \"password\":\"appconfig\",\"role\": \"USER\" \&#125;]\&#125;"&#125;</span><br><span class="line">LOGIN_MESSAGE=$&#123;LOGIN_MESSAGE:-"Please login using admin/manager or appconfig/appconfig."&#125;</span><br><span class="line"></span><br><span class="line">sed -i "s/^zkServer=.*$/zkServer=$ZK_SERVER/" /var/app/config.cfg</span><br><span class="line"></span><br><span class="line">sed -i "s/^userSet = .*$/userSet = $USER_SET/" /var/app/config.cfg</span><br><span class="line">sed -i "s|^loginMessage=.*$|loginMessage=$LOGIN_MESSAGE|" /var/app/config.cfg</span><br><span class="line"></span><br><span class="line">echo "Starting zkui with server $ZK_SERVER"</span><br><span class="line"></span><br><span class="line">exec java -jar /var/app/zkui.jar</span><br></pre></td></tr></table></figure>
+<p>这个脚本是修改后的，原项目的 sed 运行时报错，我做了简单修改，上面的是修改后的。</p>
+<h4 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h4><p>进入到 Dockerfile 同级目录，执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t zkui:2.0-SNAPSHOT .</span><br></pre></td></tr></table></figure>
+<p>说明：当前目录，没有 config.cfg 和 jar(zkui-2.0-SNAPSHOT-jar-with-dependencies.jar)，我复制了一份放在当前目录后，构建成功。</p>
+<p>查看镜像</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br></pre></td></tr></table></figure>
+<p>如果看到我们刚刚构建的 zkui，那么构建镜像就成功了。</p>
+<p>接下来我们要编写 compose.yml 文件，构建一个项目，包括两个服务，一个 ZooKeeper ，一个 zkui。这样启动后 Zookeeper 有了，其图形化 UI 也有了，还要啥。</p>
+<h4 id="编写-compose-yml"><a href="#编写-compose-yml" class="headerlink" title="编写 compose.yml"></a>编写 compose.yml</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.4'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  zoo:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">zookeeper</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">zookeeper</span></span><br><span class="line"><span class="comment">#    restart: always</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="number">2181</span><span class="string">:2181</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">~/docker/zookeeper/data:/data</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">~/data/zookeeper/datalog:/datalog</span></span><br><span class="line"><span class="attr">  zkui:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">zkui:2.0-SNAPSHOT</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">zkui</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="number">9090</span><span class="string">:9090</span></span><br><span class="line"><span class="attr">    depends_on:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">zoo</span></span><br><span class="line"><span class="attr">    links:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">zoo</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="attr">      ZK_SERVER:</span> <span class="attr">zoo:2181</span></span><br></pre></td></tr></table></figure>
+<p>compose.yml 就不介绍了，比较简单。接下来我们启动项目：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up</span><br></pre></td></tr></table></figure>
+<p>然后查看一下容器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container ls</span><br></pre></td></tr></table></figure>
+<p>大功告成！以后 Zookeeper 就用这个 Docker Container 了。 </p>
 
       
 
@@ -253,7 +264,7 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
       		
 		</ul>
@@ -272,18 +283,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2018/05/20/「第4讲」强引用、软引用、弱引用、幻象引用有什么区别？-学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          「第4讲」强引用、软引用、弱引用、幻象引用有什么区别|学习笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/05/13/「第2讲」Exception-和-Error-有什么区别|学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">「第2讲」Exception 和 Error 有什么区别|学习笔记</div>
+    <a href="/2020/01/05/「第34讲」有人说“Lambda能让Java程序慢30倍”，你怎么看？-学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">「第34讲」有人说“Lambda能让Java程序慢30倍”，你怎么看？|学习笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   

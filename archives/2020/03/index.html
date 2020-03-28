@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>「第3讲」谈谈 final、finally、finalize 有什么不同|学习笔记？ | Free Meng</title>
+  <title>Archives: 2020/3 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第三篇学习笔记，目前 app 已经更新到第七讲，我得抓紧学习了，坚持写完 36 讲学习笔记。">
-<meta name="keywords" content="Java">
-<meta property="og:type" content="article">
-<meta property="og:title" content="「第3讲」谈谈 final、finally、finalize 有什么不同|学习笔记？">
-<meta property="og:url" content="http://freemeng.com/2018/05/20/「第3讲」谈谈-final、finally、finalize-有什么不同？-学习笔记/index.html">
+  <meta name="description" content="Just Do It!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Meng">
+<meta property="og:url" content="http://freemeng.com/archives/2020/03/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第三篇学习笔记，目前 app 已经更新到第七讲，我得抓紧学习了，坚持写完 36 讲学习笔记。">
+<meta property="og:description" content="Just Do It!">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-30T14:32:35.008Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「第3讲」谈谈 final、finally、finalize 有什么不同|学习笔记？">
-<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第三篇学习笔记，目前 app 已经更新到第七讲，我得抓紧学习了，坚持写完 36 讲学习笔记。">
+<meta name="twitter:title" content="Free Meng">
+<meta name="twitter:description" content="Just Do It!">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -164,159 +162,60 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-「第3讲」谈谈-final、finally、finalize-有什么不同？-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      「第3讲」谈谈 final、finally、finalize 有什么不同|学习笔记？
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/03/28/docker-实践/" class="archive-article-date">
+  	<time datetime="2020-03-28T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-28</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/03/28/docker-实践/">docker 实践</a>
     </h1>
   
 
-        
-        <a href="/2018/05/20/「第3讲」谈谈-final、finally、finalize-有什么不同？-学习笔记/" class="archive-article-date">
-  	<time datetime="2018-05-20T01:44:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第三篇学习笔记，目前 app 已经更新到第七讲，我得抓紧学习了，坚持写完 36 讲学习笔记。</p>
-</blockquote>
-<a id="more"></a>
-<p>都说程序员需要会英语，这个题，直接扔来三个单词，还长得这么像，什么不同？第一个形容词，第二个副词，第三个动词，哈哈，回答完毕。</p>
-<ul>
-<li>典型回答</li>
-</ul>
-<ol>
-<li>final 表示“这是无法改变的”，可以用来修饰类、方法、变量，final 修饰的类不可以被继承，final 修饰的方法不可以覆盖，final 修饰的变量不可以修改。</li>
-<li>finally 常见于 try-finally 或者 try-catch-finally，是 Java 保证重点代码一定要执行的一种机制，可以用来类似关闭 JDBC 连接、保证 unlock 锁等动作。</li>
-<li>finalize 是 java.lang.Object 的一个方法，它的设计目的是保证对象在被垃圾收集前完成特定资源的回收。finalize 机制现在已经不推荐使用，并且在 JDK 9 开始被被标记为 deprecated。</li>
-</ol>
-<ul>
-<li>拓展</li>
-</ul>
-<ol>
-<li>final<br>对于基本类型，final 使数值恒定不变，而用于对象引用，final 使引用恒定不变。一旦引用被初始化指向一个对象，就无法把它改为指向另一个对象。<br>只有在想明确禁止覆盖时，才将方法设置为 final 的。不要想着使用 final 方法来进行优化，因为现在虚拟机（特别是 hotspot 技术）已经进行了优化。<br>2.finally<br>当要把除内存之外的资源恢复到它们的初始状态时，就要用到 finally 子句。这种需要清理的资源包括：已经打开的文件或网络连接，在屏幕上画的图形，甚至可以是外部世界的某个开关。</li>
-</ol>
-<ul>
-<li><p>参考文档<br>《Java 编程思想》<br>《Java 核心技术36讲》</p>
-</li>
-<li><p>推荐阅读<br><a href="https://waylau.com/concise-try-with-resources-jdk9/" target="_blank" rel="noopener">在 JDK 9 中更简洁使用 try-with-resources 语句</a></p>
-</li>
-</ul>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>你的支持是我最大的动力！<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/zhifubao.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/05/20/「第4讲」强引用、软引用、弱引用、幻象引用有什么区别？-学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          「第4讲」强引用、软引用、弱引用、幻象引用有什么区别|学习笔记
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/05/13/「第2讲」Exception-和-Error-有什么区别|学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">「第2讲」Exception 和 Error 有什么区别|学习笔记</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -339,8 +238,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
