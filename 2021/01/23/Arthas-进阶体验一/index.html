@@ -6,20 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>「第26讲」如何监控和诊断 JVM 堆内和对外内存使用？|学习笔记 | Free Meng</title>
+  <title>Arthas 进阶体验 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 26 篇学习笔记，坚持写完 36 讲学习笔记。">
-<meta name="keywords" content="Java">
+  <meta name="description" content="本文为 Arthas 进阶体验记录。  查看 JVM 信息 sysprop sysprop 可以打印所有的 System Properties 信息。  也可以指定单个 key： sysprop java.version。 也可以通过grep来过滤： sysprop | grep user。 可以设置新的value： sysprop testKey testValue。   sysenvsyse">
+<meta name="keywords" content="Arthas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「第26讲」如何监控和诊断 JVM 堆内和对外内存使用？|学习笔记">
-<meta property="og:url" content="http://freemeng.com/2019/04/13/「第26讲」如何监控和诊断-JVM-堆内和对外内存使用？-学习笔记/index.html">
+<meta property="og:title" content="Arthas 进阶体验">
+<meta property="og:url" content="http://freemeng.com/2021/01/23/Arthas-进阶体验一/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 26 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta property="og:description" content="本文为 Arthas 进阶体验记录。  查看 JVM 信息 sysprop sysprop 可以打印所有的 System Properties 信息。  也可以指定单个 key： sysprop java.version。 也可以通过grep来过滤： sysprop | grep user。 可以设置新的value： sysprop testKey testValue。   sysenvsyse">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-30T14:32:37.235Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxseklun2j21bm0z242v.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsh5b5ddj21bm0z2jw9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsie4vhlj21bm0z2gr0.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxskpoj05j21bm0z20yo.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsl771jjj21bm0z2adj.jpg">
+<meta property="og:image" content="http://freemeng.com/Users/zhangzhenyang/Library/Application%20Support/typora-user-images/image-20210123181309540.png">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsm1krcuj21bm0z2juq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxy4akqzgj21bm0z246e.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxyap90f1j21bm0z20ya.jpg">
+<meta property="og:updated_time" content="2021-01-23T14:29:02.766Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「第26讲」如何监控和诊断 JVM 堆内和对外内存使用？|学习笔记">
-<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 26 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta name="twitter:title" content="Arthas 进阶体验">
+<meta name="twitter:description" content="本文为 Arthas 进阶体验记录。  查看 JVM 信息 sysprop sysprop 可以打印所有的 System Properties 信息。  也可以指定单个 key： sysprop java.version。 也可以通过grep来过滤： sysprop | grep user。 可以设置新的value： sysprop testKey testValue。   sysenvsyse">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxseklun2j21bm0z242v.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -164,20 +174,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-「第26讲」如何监控和诊断-JVM-堆内和对外内存使用？-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Arthas-进阶体验一" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      「第26讲」如何监控和诊断 JVM 堆内和对外内存使用？|学习笔记
+      Arthas 进阶体验
     </h1>
   
 
         
-        <a href="/2019/04/13/「第26讲」如何监控和诊断-JVM-堆内和对外内存使用？-学习笔记/" class="archive-article-date">
-  	<time datetime="2019-04-13T05:14:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-13</time>
+        <a href="/2021/01/23/Arthas-进阶体验一/" class="archive-article-date">
+  	<time datetime="2021-01-23T10:03:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-23</time>
 </a>
         
       </header>
@@ -185,40 +195,66 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 26 篇学习笔记，坚持写完 36 讲学习笔记。</p>
+<p>本文为 Arthas 进阶体验记录。</p>
 </blockquote>
-<a id="more"></a>
-<h3 id="1-工具"><a href="#1-工具" class="headerlink" title="1. 工具"></a>1. 工具</h3><ul>
-<li><p>综合性的图形化工具</p>
+<h4 id="查看-JVM-信息"><a href="#查看-JVM-信息" class="headerlink" title="查看 JVM 信息"></a>查看 JVM 信息</h4><ul>
+<li><p>sysprop</p>
+<p><code>sysprop</code> 可以打印所有的 System Properties 信息。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxseklun2j21bm0z242v.jpg" alt="image.png"></p>
+<p>也可以指定单个 key： <code>sysprop java.version</code>。</p>
+<p>也可以通过<code>grep</code>来过滤： <code>sysprop | grep user</code>。</p>
+<p>可以设置新的value： <code>sysprop testKey testValue</code>。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsh5b5ddj21bm0z2jw9.jpg" alt="image.png"></p>
+</li>
+<li><h4 id="sysenv"><a href="#sysenv" class="headerlink" title="sysenv"></a>sysenv</h4><p><code>sysenv</code> 命令可以获取到环境变量。和<code>sysprop</code>命令类似。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsie4vhlj21bm0z2gr0.jpg" alt="image.png"></p>
+</li>
+<li><p>jvm</p>
+<p><code>jvm</code> 命令会打印出<code>JVM</code>的各种详细信息。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxskpoj05j21bm0z20yo.jpg" alt="image.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsl771jjj21bm0z2adj.jpg" alt="image.png"></p>
+<p><img src="/Users/zhangzhenyang/Library/Application Support/typora-user-images/image-20210123181309540.png" alt="image-20210123181309540"></p>
+<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsm1krcuj21bm0z2juq.jpg" alt="image.png"></p>
+</li>
+</ul>
+<h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><ul>
+<li><p>help</p>
+<p>可以用<code>-h</code>来查看帮助。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysprop -h</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自动补全</p>
+</li>
+<li><h4 id="readline-的快捷键支持"><a href="#readline-的快捷键支持" class="headerlink" title="readline 的快捷键支持"></a>readline 的快捷键支持</h4><p><code>Ctrl + A</code>跳转行首，<code>Ctrl + E</code>跳转行尾。</p>
+<p>更多的快捷键可以用 <code>keymap</code> 命令查看。</p>
+</li>
+<li><h4 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h4></li>
+</ul>
+<h4 id="sc-sm-查看已加载的类"><a href="#sc-sm-查看已加载的类" class="headerlink" title="sc/sm 查看已加载的类"></a>sc/sm 查看已加载的类</h4><ul>
+<li><p>sc</p>
+<p><code>sc</code> 命令可以查找到所有 JVM 已经加载到的类。 如果搜索的是接口，还会搜索所有的实现类。比如查看所有的<code>Filter</code>实现类：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxy4akqzgj21bm0z246e.jpg" alt="image.png"></p>
+<p>通过<code>-d</code>参数，可以打印出类加载的具体信息，很方便查找类加载问题。</p>
+<p><code>sc</code>支持通配。</p>
+</li>
+<li><p>sm</p>
+<p><code>sm</code>命令则是查找类的具体函数。</p>
+<p>通过<code>-d</code>参数可以打印函数的具体属性。</p>
+<p>也可以查找特定的函数，比如查找构造函数：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxyap90f1j21bm0z20ya.jpg" alt="image.png"></p>
+</li>
+</ul>
+<h4 id="Ognl"><a href="#Ognl" class="headerlink" title="Ognl"></a>Ognl</h4><p>在 Arthas 里，有一个单独的<code>ognl</code>命令，可以动态执行代码。</p>
 <ul>
-<li>JConsole</li>
-<li>VisualVM</li>
-</ul>
+<li><p>调用 static 函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ognl <span class="string">'@java.lang.System@out.println("hello ognl")'</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>命令行工具</p>
-<ul>
-<li>jstat</li>
-<li>jmap</li>
-</ul>
-</li>
-<li><p>Java Mission Control(JMC)<br>不仅仅能够使用 JMX 进行普通的管理、监控任务，还可以配合 Java Flight Recorder(JFR)技术，以非常低的开销，收集和分析 JVM 底层的 Profiling 和事件等信息。</p>
+<li><p>获取静态类的静态字段</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ognl --classLoaderClass org.springframework.boot.loader.LaunchedURLClassLoader <span class="meta">@com</span>.example.demo.arthas.user.UserController<span class="meta">@logger</span></span><br></pre></td></tr></table></figure>
+<p>在 Arthas 里<code>ognl</code>表达式是很重要的功能，在很多命令里都可以使用<code>ognl</code>表达式。</p>
+<p>OGNL特殊用法请参考：<a href="https://github.com/alibaba/arthas/issues/71" target="_blank" rel="noopener">https://github.com/alibaba/arthas/issues/71</a></p>
+<p>OGNL表达式官方指南：<a href="https://commons.apache.org/proper/commons-ognl/language-guide.html" target="_blank" rel="noopener">https://commons.apache.org/proper/commons-ognl/language-guide.html</a></p>
 </li>
 </ul>
-<p>一个特殊的部分，就是堆外内存中的直接内存，前面的工具基本不适用，使用 Native Memory Tracking (NMT)，它会从 JVM 本地内存分配的角度进行解读。</p>
-<h3 id="2-堆内部结构"><a href="#2-堆内部结构" class="headerlink" title="2. 堆内部结构"></a>2. 堆内部结构</h3><p>按照 GC 年代划分，Java 堆分为：</p>
-<p>1.新生代(Young Generation)<br>新生代是大部分对象创建和销毁的区域。</p>
-<ul>
-<li><p>Eden[‘i:dn]<br>伊甸园，对象初始分配的区域。</p>
-</li>
-<li><p>Survivor[sərˈvaɪvə(r)]<br>幸存者，用来放置从 Minor[ˈmaɪnɚ]GC 中保留下来的对象。</p>
-</li>
-</ul>
-<p>2.老年代(Old Generation)<br>放置长生命周期对象，通常都是从 Survivor 区域拷贝过来的对象。<br>如果对象太大，完全无法在新生代找到足够长的连续空闲空间，JVM 就会直接分配到老年代。</p>
-<p>3.永久代(Permenent Generation)<br>早期 Hotspot JVM 方法区的实现方式，jdk 8 以后就没有了。</p>
-<h3 id="3-JVM-参数"><a href="#3-JVM-参数" class="headerlink" title="3. JVM 参数"></a>3. JVM 参数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.最大堆体积</span><br><span class="line">-Xmx value</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>.初始最小堆体积</span><br><span class="line">-Xms value</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>.老年代和新生代的比例</span><br><span class="line">-XX:NewRatio=value</span><br><span class="line">默认数值是 <span class="number">2</span>，即老年代是新生代的 <span class="number">2</span> 倍，即新生代是堆的 <span class="number">1</span>/<span class="number">3</span>。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.直接设置新生代大小</span><br><span class="line">-XX:NewSize=value</span><br><span class="line"></span><br><span class="line"><span class="number">5</span>.Eden 和 Survivor 的比例</span><br><span class="line">-XX:SurvivorRatio=value</span><br><span class="line">如果这个数值是 <span class="number">8</span>，即 Eden 是 Survivor 的 <span class="number">8</span> 倍</span><br></pre></td></tr></table></figure>
-<p>在 JVM 内部，如果 -Xms 小于 -Xmx，堆的大小并不会直接扩展到上限，当内存需求不断增加后，JVM 会逐渐扩展新生代等区域的大小。</p>
-<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>堆内部按照 GC 年代划分，分为新生代、老年代及永久代（jdk 8 以后已经没了），新生代中分为 Eden 和 Survior。</p>
-<h3 id="5-参考文档"><a href="#5-参考文档" class="headerlink" title="5. 参考文档"></a>5. 参考文档</h3><p>《Java 核心技术 36 讲》</p>
 
       
 
@@ -263,7 +299,7 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Arthas</a>
         		</li>
       		
 		</ul>
@@ -282,18 +318,18 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2019/04/13/我要开始打卡了/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/01/23/Arthas-进阶体验二/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          我要开始打卡了
+          Arthas 进阶体验二
         
       </div>
     </a>
   
   
-    <a href="/2019/03/31/「第25讲」谈谈-JVM-内存区域划分，哪些区域可能发生-OutOfMemoryError-学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">「第25讲」谈谈 JVM 内存区域划分，哪些区域可能发生 OutOfMemoryError?|学习笔记</div>
+    <a href="/2021/01/23/Arthas-初体验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Arthas 初体验</div>
       <i class="icon-circle-right"></i>
     </a>
   

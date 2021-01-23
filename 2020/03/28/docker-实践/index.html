@@ -194,7 +194,7 @@ ga('send', 'pageview');
 </blockquote>
 <h4 id="Dockerfile-学习"><a href="#Dockerfile-学习" class="headerlink" title="Dockerfile 学习"></a>Dockerfile 学习</h4><p>如何让我们的项目，以 Docker 镜像的方式运行？答案是编写 Dockerfile。👌，让我们去看看 zkui 的 Dockerfile，项目地址：<a href="https://github.com/DeemOpen/zkui/" target="_blank" rel="noopener">https://github.com/DeemOpen/zkui/</a></p>
 <p>进入 到 docker 目录，就可以看到 Dockerfile 文件，其内容为：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">MAINTAINER</span> Miguel Garcia Puyol &lt;miguelpuyol@gmail.com&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span> /var/app</span><br><span class="line"></span><br><span class="line">ADD zkui-*.jar /var/app/zkui.jar</span><br><span class="line">ADD config.cfg /var/app/config.cfg</span><br><span class="line">ADD bootstrap.sh /var/app/bootstrap.sh</span><br><span class="line"></span><br><span class="line">ENTRYPOINT ["/var/app/bootstrap.sh"]</span><br><span class="line"></span><br><span class="line">EXPOSE 9090</span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">MAINTAINER</span> Miguel Garcia Puyol &lt;miguelpuyol@gmail.com&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /var/app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">ADD zkui-*.jar /var/app/zkui.jar</span></span><br><span class="line"><span class="bash">ADD config.cfg /var/app/config.cfg</span></span><br><span class="line"><span class="bash">ADD bootstrap.sh /var/app/bootstrap.sh</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">ENTRYPOINT [<span class="string">"/var/app/bootstrap.sh"</span>]</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">EXPOSE 9090</span></span><br></pre></td></tr></table></figure>
 <p>简单解释一下</p>
 <ul>
 <li>FROM 指定基础镜像</li>
@@ -205,7 +205,7 @@ ga('send', 'pageview');
 <li>EXPOSE 申明端口</li>
 </ul>
 <p>总结一下这个 Dockerfile 的内容，基于基础镜像 java 8 ，往工作目录 /var/app 复制了，一个 jar 包，一个配置文件，一个启动脚本，最后声明端口 9090。下面，我们再看看那个启动脚本。</p>
-<h4 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line"></span><br><span class="line">ZK_SERVER=$&#123;ZK_SERVER:-"localhost:2181"&#125;</span><br><span class="line"></span><br><span class="line">USER_SET=$&#123;USER_SET:-"&#123;\"users\": [&#123; \"username\":\"admin\" , \"password\":\"manager\",\"role\": \"ADMIN\" \&#125;,&#123; \"username\":\"appconfig\" , \"password\":\"appconfig\",\"role\": \"USER\" \&#125;]\&#125;"&#125;</span><br><span class="line">LOGIN_MESSAGE=$&#123;LOGIN_MESSAGE:-"Please login using admin/manager or appconfig/appconfig."&#125;</span><br><span class="line"></span><br><span class="line">sed -i "s/^zkServer=.*$/zkServer=$ZK_SERVER/" /var/app/config.cfg</span><br><span class="line"></span><br><span class="line">sed -i "s/^userSet = .*$/userSet = $USER_SET/" /var/app/config.cfg</span><br><span class="line">sed -i "s|^loginMessage=.*$|loginMessage=$LOGIN_MESSAGE|" /var/app/config.cfg</span><br><span class="line"></span><br><span class="line">echo "Starting zkui with server $ZK_SERVER"</span><br><span class="line"></span><br><span class="line">exec java -jar /var/app/zkui.jar</span><br></pre></td></tr></table></figure>
+<h4 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">ZK_SERVER=$&#123;ZK_SERVER:-"localhost:2181"&#125;</span><br><span class="line"></span><br><span class="line">USER_SET=$&#123;USER_SET:-"&#123;\"users\": [&#123; \"username\":\"admin\" , \"password\":\"manager\",\"role\": \"ADMIN\" \&#125;,&#123; \"username\":\"appconfig\" , \"password\":\"appconfig\",\"role\": \"USER\" \&#125;]\&#125;"&#125;</span><br><span class="line">LOGIN_MESSAGE=$&#123;LOGIN_MESSAGE:-"Please login using admin/manager or appconfig/appconfig."&#125;</span><br><span class="line"></span><br><span class="line">sed -i "s/^zkServer=.*$/zkServer=$ZK_SERVER/" /var/app/config.cfg</span><br><span class="line"></span><br><span class="line">sed -i "s/^userSet = .*$/userSet = $USER_SET/" /var/app/config.cfg</span><br><span class="line">sed -i "s|^loginMessage=.*$|loginMessage=$LOGIN_MESSAGE|" /var/app/config.cfg</span><br><span class="line"></span><br><span class="line">echo "Starting zkui with server $ZK_SERVER"</span><br><span class="line"></span><br><span class="line">exec java -jar /var/app/zkui.jar</span><br></pre></td></tr></table></figure>
 <p>这个脚本是修改后的，原项目的 sed 运行时报错，我做了简单修改，上面的是修改后的。</p>
 <h4 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h4><p>进入到 Dockerfile 同级目录，执行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t zkui:2.0-SNAPSHOT .</span><br></pre></td></tr></table></figure>
@@ -420,6 +420,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Arthas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
@@ -428,19 +432,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -452,15 +448,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Arthas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,6 +465,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">github博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,7 +492,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,11 +500,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
+                <a href="javascript:void(0)" class="js-tag color5">design pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">design pattern</a>
+                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,7 +512,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
               <li class="article-tag-list-item">

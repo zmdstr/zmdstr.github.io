@@ -12,7 +12,7 @@
 <meta name="keywords" content="Arthas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Arthas 初体验">
-<meta property="og:url" content="http://freemeng.com/2021/01/23/arthas-初体验/index.html">
+<meta property="og:url" content="http://freemeng.com/2021/01/23/Arthas-初体验/index.html">
 <meta property="og:site_name" content="Free Meng">
 <meta property="og:description" content="本文主要记录 arthas 的一些功能，体验一下 arthas 的强大。">
 <meta property="og:locale" content="zh-Hans">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxrmre06dj21bm0z2445.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxrobp9m8j21bm0z2n29.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxrqb6n68j21bm0z2wkb.jpg">
-<meta property="og:updated_time" content="2021-01-23T09:56:17.552Z">
+<meta property="og:updated_time" content="2021-01-23T14:22:59.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Arthas 初体验">
 <meta name="twitter:description" content="本文主要记录 arthas 的一些功能，体验一下 arthas 的强大。">
@@ -170,7 +170,7 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-arthas-初体验" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Arthas-初体验" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -182,7 +182,7 @@ ga('send', 'pageview');
   
 
         
-        <a href="/2021/01/23/arthas-初体验/" class="archive-article-date">
+        <a href="/2021/01/23/Arthas-初体验/" class="archive-article-date">
   	<time datetime="2021-01-23T09:29:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-23</time>
 </a>
         
@@ -205,6 +205,17 @@ ga('send', 'pageview');
 <p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxrftkkkmj21bm0z2jyg.jpg" alt="image.png"></p>
 <h4 id="Thread"><a href="#Thread" class="headerlink" title="Thread"></a>Thread</h4><p><code>thread 1</code> 命令会打印线程 ID 1 的栈。</p>
 <p>支持管道，可以用 <code>thread 1 | grep &#39;main(&#39;</code> 查找到<code>main class</code>。</p>
+<ul>
+<li><p>查看 CPU使用率 top n 线程的栈</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread -n <span class="number">3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看 5 秒内的 CPU 使用率 top n 线程栈</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread -n 3 -i 5000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查找线程是否有阻塞</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread -b</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxrip483ij21bm0z2grq.jpg" alt="image.png"></p>
 <h4 id="SC"><a href="#SC" class="headerlink" title="SC"></a>SC</h4><p>可以通过 <code>sc</code> 命令来查找 JVM 里已加载的类：</p>
 <p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxrmre06dj21bm0z2445.jpg" alt="image.png"></p>
@@ -214,6 +225,7 @@ ga('send', 'pageview');
 <p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxrqb6n68j21bm0z2wkb.jpg" alt="image.png"></p>
 <h4 id="Exit-Stop"><a href="#Exit-Stop" class="headerlink" title="Exit/Stop"></a>Exit/Stop</h4><p>用 <code>exit</code> 或者 <code>quit</code> 命令可以退出 Arthas。</p>
 <p><code>exit/quit</code>命令只是退出当前 session，arthas server 还在目标进程中运行。</p>
+<p>Arthas 在 watch/trace 等命令时，实际上是修改了应用的字节码，插入增强的代码。显式执行 <code>reset</code> 命令，可以清除掉这些增强代码。</p>
 <p>想完全退出 Arthas，可以执行 <code>stop</code> 命令。</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>以上内容，来源 Arthas 基础教程，可以看到从系统监控、到线程、JVM 中类、反编译、方法监控，Arthas 游刃有余，非常值得尝试和学习，并纳入自己的工具库。</p>
 
@@ -278,6 +290,15 @@ ga('send', 'pageview');
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/01/23/Arthas-进阶体验一/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Arthas 进阶体验
+        
+      </div>
+    </a>
   
   
     <a href="/2021/01/23/工具汇总篇/" id="article-nav-older" class="article-nav-link-wrap">
@@ -407,6 +428,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Arthas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
@@ -415,19 +440,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -439,15 +456,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Arthas</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -456,6 +473,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">github博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -479,7 +500,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,11 +508,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
+                <a href="javascript:void(0)" class="js-tag color5">design pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">design pattern</a>
+                <a href="javascript:void(0)" class="js-tag color5">Tool</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,7 +520,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color2">tomcat</a>
               </li>
              
               <li class="article-tag-list-item">
