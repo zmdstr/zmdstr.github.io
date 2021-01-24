@@ -184,31 +184,12 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h4><ul>
-<li><p>查看 UserController 的 参数/异常</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch com.example.demo.arthas.user.UserController * <span class="string">'&#123;params, throwExp&#125;'</span> <span class="string">'params[0] &gt; 100'</span> -x <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li>第一个参数是类名，支持通配</li>
-<li>第二个参数是函数名，支持通配 </li>
-<li>第三个参数是<code>返回值表达式</code>，它实际上是一个<code>ognl</code>表达式</li>
-<li>第四个参数里写条件表达式</li>
-<li>如果想把获取到的结果展开，可以用<code>-x</code>参数：</li>
-</ol>
-</li>
-<li><p>当异常时捕获</p>
-<p><code>-e</code>选项，表示只捕获抛出异常时的请求</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch com.example.demo.arthas.user.UserController * <span class="string">"&#123;params[0],throwExp&#125;"</span> -e</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>按照耗时进行过滤</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watch com.example.demo.arthas.user.UserController * <span class="string">'&#123;params, returnObj&#125;'</span> <span class="string">'#cost&gt;200'</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="热更新代码"><a href="#热更新代码" class="headerlink" title="热更新代码"></a>热更新代码</h4><p>通过<code>jad</code>/<code>mc</code>/<code>redefine</code> 命令实现动态更新代码的功能。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jad --source-only com.example.demo.arthas.user.UserController &gt; /tmp/UserController.java</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc -d *UserController | grep classLoaderHash</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mc -c <span class="number">1</span>be6f5c3 /tmp/UserController.java -d /tmp</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redefine /tmp/com/example/demo/arthas/user/UserController.class</span><br></pre></td></tr></table></figure>
-
+        <blockquote>
+<p>本文为 Arthas 进阶体验记录</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2021/01/23/Arthas-进阶体验二/#more">more >></a>
+        
       
 
       
@@ -282,67 +263,11 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>本文为 Arthas 进阶体验记录。</p>
+<p>本文为 Arthas 进阶体验记录</p>
 </blockquote>
-<h4 id="查看-JVM-信息"><a href="#查看-JVM-信息" class="headerlink" title="查看 JVM 信息"></a>查看 JVM 信息</h4><ul>
-<li><p>sysprop</p>
-<p><code>sysprop</code> 可以打印所有的 System Properties 信息。</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxseklun2j21bm0z242v.jpg" alt="image.png"></p>
-<p>也可以指定单个 key： <code>sysprop java.version</code>。</p>
-<p>也可以通过<code>grep</code>来过滤： <code>sysprop | grep user</code>。</p>
-<p>可以设置新的value： <code>sysprop testKey testValue</code>。</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsh5b5ddj21bm0z2jw9.jpg" alt="image.png"></p>
-</li>
-<li><h4 id="sysenv"><a href="#sysenv" class="headerlink" title="sysenv"></a>sysenv</h4><p><code>sysenv</code> 命令可以获取到环境变量。和<code>sysprop</code>命令类似。</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsie4vhlj21bm0z2gr0.jpg" alt="image.png"></p>
-</li>
-<li><p>jvm</p>
-<p><code>jvm</code> 命令会打印出<code>JVM</code>的各种详细信息。</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxskpoj05j21bm0z20yo.jpg" alt="image.png"></p>
-<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsl771jjj21bm0z2adj.jpg" alt="image.png"></p>
-<p><img src="/Users/zhangzhenyang/Library/Application Support/typora-user-images/image-20210123181309540.png" alt="image-20210123181309540"></p>
-<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxsm1krcuj21bm0z2juq.jpg" alt="image.png"></p>
-</li>
-</ul>
-<h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><ul>
-<li><p>help</p>
-<p>可以用<code>-h</code>来查看帮助。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysprop -h</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自动补全</p>
-</li>
-<li><h4 id="readline-的快捷键支持"><a href="#readline-的快捷键支持" class="headerlink" title="readline 的快捷键支持"></a>readline 的快捷键支持</h4><p><code>Ctrl + A</code>跳转行首，<code>Ctrl + E</code>跳转行尾。</p>
-<p>更多的快捷键可以用 <code>keymap</code> 命令查看。</p>
-</li>
-<li><h4 id="pipeline"><a href="#pipeline" class="headerlink" title="pipeline"></a>pipeline</h4></li>
-</ul>
-<h4 id="sc-sm-查看已加载的类"><a href="#sc-sm-查看已加载的类" class="headerlink" title="sc/sm 查看已加载的类"></a>sc/sm 查看已加载的类</h4><ul>
-<li><p>sc</p>
-<p><code>sc</code> 命令可以查找到所有 JVM 已经加载到的类。 如果搜索的是接口，还会搜索所有的实现类。比如查看所有的<code>Filter</code>实现类：</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxy4akqzgj21bm0z246e.jpg" alt="image.png"></p>
-<p>通过<code>-d</code>参数，可以打印出类加载的具体信息，很方便查找类加载问题。</p>
-<p><code>sc</code>支持通配。</p>
-</li>
-<li><p>sm</p>
-<p><code>sm</code>命令则是查找类的具体函数。</p>
-<p>通过<code>-d</code>参数可以打印函数的具体属性。</p>
-<p>也可以查找特定的函数，比如查找构造函数：</p>
-<p><img src="http://ww1.sinaimg.cn/large/9b6518b1ly1gmxyap90f1j21bm0z20ya.jpg" alt="image.png"></p>
-</li>
-</ul>
-<h4 id="Ognl"><a href="#Ognl" class="headerlink" title="Ognl"></a>Ognl</h4><p>在 Arthas 里，有一个单独的<code>ognl</code>命令，可以动态执行代码。</p>
-<ul>
-<li><p>调用 static 函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ognl <span class="string">'@java.lang.System@out.println("hello ognl")'</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取静态类的静态字段</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ognl --classLoaderClass org.springframework.boot.loader.LaunchedURLClassLoader <span class="meta">@com</span>.example.demo.arthas.user.UserController<span class="meta">@logger</span></span><br></pre></td></tr></table></figure>
-<p>在 Arthas 里<code>ognl</code>表达式是很重要的功能，在很多命令里都可以使用<code>ognl</code>表达式。</p>
-<p>OGNL特殊用法请参考：<a href="https://github.com/alibaba/arthas/issues/71" target="_blank" rel="noopener">https://github.com/alibaba/arthas/issues/71</a></p>
-<p>OGNL表达式官方指南：<a href="https://commons.apache.org/proper/commons-ognl/language-guide.html" target="_blank" rel="noopener">https://commons.apache.org/proper/commons-ognl/language-guide.html</a></p>
-</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2021/01/23/Arthas-进阶体验一/#more">more >></a>
+        
       
 
       
