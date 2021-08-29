@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://freemeng.com">
-  <title>「第11讲」01 Java提供了哪些IO方式？|学习笔记 | Free Meng</title>
+  <title>Kafka 认证配置实践笔记 | Free Meng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 11 篇学习笔记，坚持写完 36 讲学习笔记。">
-<meta name="keywords" content="Java">
+  <meta name="description" content="今天我们来实践 Kafka 安全配置，通过本篇教程，我们将配置一个需要使用用户名、密码访问的 Kafka。  本文使用 SASL/SCRAM 认证机制，是 Kafka 0.10.2 版本引入的。 测试环境: MacOs mojave，kafka_2.12-2.4.0">
+<meta name="keywords" content="Kafka">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「第11讲」01 Java提供了哪些IO方式？|学习笔记">
-<meta property="og:url" content="http://freemeng.com/2019/02/11/「第11讲」01-Java提供了哪些IO方式？-学习笔记/index.html">
+<meta property="og:title" content="Kafka 认证配置实践笔记">
+<meta property="og:url" content="http://freemeng.com/2021/08/29/Kafka-认证配置实践笔记/index.html">
 <meta property="og:site_name" content="Free Meng">
-<meta property="og:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 11 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta property="og:description" content="今天我们来实践 Kafka 安全配置，通过本篇教程，我们将配置一个需要使用用户名、密码访问的 Kafka。  本文使用 SASL/SCRAM 认证机制，是 Kafka 0.10.2 版本引入的。 测试环境: MacOs mojave，kafka_2.12-2.4.0">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-11T03:50:17.000Z">
+<meta property="og:updated_time" content="2021-08-29T10:00:48.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「第11讲」01 Java提供了哪些IO方式？|学习笔记">
-<meta name="twitter:description" content="这是我学习极客时间 app 中《Java核心技术36讲》课程的第 11 篇学习笔记，坚持写完 36 讲学习笔记。">
+<meta name="twitter:title" content="Kafka 认证配置实践笔记">
+<meta name="twitter:description" content="今天我们来实践 Kafka 安全配置，通过本篇教程，我们将配置一个需要使用用户名、密码访问的 Kafka。  本文使用 SASL/SCRAM 认证机制，是 Kafka 0.10.2 版本引入的。 测试环境: MacOs mojave，kafka_2.12-2.4.0">
   
     <link rel="alternative" href="/atom.xml" title="Free Meng" type="application/atom+xml">
   
@@ -164,20 +164,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-「第11讲」01-Java提供了哪些IO方式？-学习笔记" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Kafka-认证配置实践笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      「第11讲」01 Java提供了哪些IO方式？|学习笔记
+      Kafka 认证配置实践笔记
     </h1>
   
 
         
-        <a href="/2019/02/11/「第11讲」01-Java提供了哪些IO方式？-学习笔记/" class="archive-article-date">
-  	<time datetime="2019-02-11T03:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-11</time>
+        <a href="/2021/08/29/Kafka-认证配置实践笔记/" class="archive-article-date">
+  	<time datetime="2021-08-29T07:37:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-29</time>
 </a>
         
       </header>
@@ -185,21 +185,35 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>这是我学习极客时间 app 中《Java核心技术36讲》课程的第 11 篇学习笔记，坚持写完 36 讲学习笔记。</p>
+<p>今天我们来实践 Kafka 安全配置，通过本篇教程，我们将配置一个需要使用用户名、密码访问的 Kafka。</p>
 </blockquote>
+<p>本文使用 SASL/SCRAM 认证机制，是 Kafka 0.10.2 版本引入的。</p>
+<p>测试环境: MacOs mojave，kafka_2.12-2.4.0</p>
 <a id="more"></a>
-<h3 id="1-Java-提供了哪些-IO-方式"><a href="#1-Java-提供了哪些-IO-方式" class="headerlink" title="1.Java 提供了哪些 IO 方式"></a>1.Java 提供了哪些 IO 方式</h3><p>根据交互方式分类如下：</p>
-<ul>
-<li><p>BIO 同步阻塞 IO<br>传统的 java.io 包，提供了我们最熟悉的一些 IO 功能，比如 File 抽象、输入输出流等。在读取输入流或者写入输出流时，在读、写动作完成之前，线程会一直阻塞在那里。<br>优点：代码简单、直观，缺点：效率及扩展性存在局限性，容易成为应用性能瓶颈。<br>java.net 下面提供的部分网络 API，比如 Socket、ServerSocket、HttpURLConnection 同样归类到同步阻塞 IO 类库，因为网络通信同样是 IO 行为。</p>
-</li>
-<li><p>NIO 同步非阻塞 IO<br>Java 1.4 中引入了 NIO 框架（java.nio 包），提供了 Channel、Selector、Buffer 等新的抽象，可以构建多路复用的、同步非阻塞 IO 程序，同时提供了更接近操作系统底层的高性能数据操作方式。</p>
-</li>
-<li><p>NIO2(AIO) 异步非阻塞 IO<br>Java 7 中，NIO 进一步优化，也就是 NIO 2，引入了异步非阻塞 IO 方式（AIO）。异步 IO 操作基于事件和回调机制，可以简单理解为，应用操作直接返回，而不会阻塞在那里，当回台处理完成，操作系统会通知相应线程进行后续工作。</p>
-</li>
-</ul>
-<h3 id="2-同步与异步（synchronous-asynchronous）"><a href="#2-同步与异步（synchronous-asynchronous）" class="headerlink" title="2.同步与异步（synchronous/asynchronous）"></a>2.同步与异步（synchronous/asynchronous）</h3><p>简单来说，同步是一种可靠的有序运行机制，当我们进行同步操作时，后续的任务是等待当前调用返回，才会进行下一步；而异步则相反，其它任务不需要等待当前调用返回，通常依靠事件、回调等机制来实现任务间次序关系。<br>举例：RPC 调用就是同步的，等待返回结果，而发Q(消息)则是异步的。</p>
-<h3 id="3-阻塞与非阻塞（blocking-non-blocking）"><a href="#3-阻塞与非阻塞（blocking-non-blocking）" class="headerlink" title="3.阻塞与非阻塞（blocking/non-blocking）"></a>3.阻塞与非阻塞（blocking/non-blocking）</h3><p>这个简单，在进行阻塞操作时，当前线程会处于阻塞状态，无法从事其他任务，只有当条件就绪才能继续，比如写入操作完成；而非阻塞则是不管 IO 操作是否结束，直接返回，相应操作在后台继续处理。</p>
-<h3 id="4-参考文档"><a href="#4-参考文档" class="headerlink" title="4. 参考文档"></a>4. 参考文档</h3><p>《Java 核心技术 36 讲》</p>
+<h4 id="第一步，创建用户"><a href="#第一步，创建用户" class="headerlink" title="第一步，创建用户"></a>第一步，创建用户</h4><p>说明:</p>
+<p>admin 用于 broker 之间通信，writer 用于生产者，reader 用于消费者。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-configs.sh --zookeeper localhost:<span class="number">2181</span> --alter --add-config <span class="string">'SCRAM-SHA-256=[password=admin]'</span> --entity-type users --entity-name admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-configs.sh --zookeeper localhost:<span class="number">2181</span> --alter --add-config <span class="string">'SCRAM-SHA-256=[password=writer]'</span> --entity-type users --entity-name writer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bin/kafka-configs.sh --zookeeper localhost:<span class="number">2181</span> --alter --add-config <span class="string">'SCRAM-SHA-256=[password=reader]'</span> --entity-type users --entity-name reader</span><br></pre></td></tr></table></figure>
+<h4 id="第二步，创建-JAAS-文件"><a href="#第二步，创建-JAAS-文件" class="headerlink" title="第二步，创建 JAAS 文件"></a>第二步，创建 JAAS 文件</h4><p>说明：</p>
+<p>这个文件用于启动 broker，文件可以命名为 kafka-broker.jaas，broker 启动时需要指定该文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">KafkaServer &#123;</span><br><span class="line">org.apache.kafka.common.security.scram.ScramLoginModule required</span><br><span class="line">username=<span class="string">"admin"</span></span><br><span class="line">password=<span class="string">"admin"</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="第三步，配置-server-properties-文件"><a href="#第三步，配置-server-properties-文件" class="headerlink" title="第三步，配置 server.properties 文件"></a>第三步，配置 server.properties 文件</h4><p>说明：</p>
+<p>既然要进行认证，server.properties 文件是要进行配置的，参考下面的配置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sasl.enabled.mechanisms=SCRAM-SHA-<span class="number">256</span></span><br><span class="line"></span><br><span class="line">sasl.mechanism.inter.broker.protocol=SCRAM-SHA-<span class="number">256</span></span><br><span class="line"></span><br><span class="line">security.inter.broker.protocol=SASL_PLAINTEXT</span><br><span class="line"></span><br><span class="line">listeners=SASL_PLAINTEXT:<span class="comment">//localhost:9092</span></span><br></pre></td></tr></table></figure>
+<h4 id="第四步，启动-broker"><a href="#第四步，启动-broker" class="headerlink" title="第四步，启动 broker"></a>第四步，启动 broker</h4><p>说明：</p>
+<p>启动 broker 时，指定 jaas 文件，及修改后的 server.properties 文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KAFKA_OPTS=-Djava.security.auth.login.config=&lt;yourPath&gt;/kafka-broker.jaas bin/kafka-server-start.sh config/server.properties</span><br></pre></td></tr></table></figure>
+<h4 id="第五步，发送消息"><a href="#第五步，发送消息" class="headerlink" title="第五步，发送消息"></a>第五步，发送消息</h4><p>说明：</p>
+<p>开启了认证后，我们的生产者，需要提供用户名、密码，因此需要配置一个文件，启动时指定，内容如下：可以命名为 producer.conf</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">security.protocol=SASL_PLAINTEXT</span><br><span class="line">sasl.mechanism=SCRAM-SHA-<span class="number">256</span></span><br><span class="line">sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required username=<span class="string">"writer"</span> password=<span class="string">"writer"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-producer.sh --broker-list localhost:<span class="number">9092</span> --topic test  --producer.config &lt;yourPath&gt;/kafka_2.12-<span class="number">2.4</span>.0/producer.conf</span><br></pre></td></tr></table></figure>
+<h4 id="第六步，接收消息"><a href="#第六步，接收消息" class="headerlink" title="第六步，接收消息"></a>第六步，接收消息</h4><p>说明：</p>
+<p>消费者和生产者一样，启动时，需要指定配置文件，配置文件的内容和生产者类似，只有用户名、密码不一致。内容如下：可以命名为 consumer.conf</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">security.protocol=SASL_PLAINTEXT</span><br><span class="line">sasl.mechanism=SCRAM-SHA-<span class="number">256</span></span><br><span class="line">sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required username=<span class="string">"reader"</span> password=<span class="string">"reader"</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-console-consumer.sh --bootstrap-server localhost:<span class="number">9092</span> --topic test --from-beginning --consumer.config &lt;yourPath&gt;/kafka_2.12-<span class="number">2.4</span>.0/consumer.conf</span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>我们配置了一个简单的 Kafka 认证，使用 SASL/SCRAM 认证机制。首先创建用户，设置密码，然后修改 server 配置文件，最后，producer 、consumer 在启动时，均需要提供用户名、密码。</p>
+<p>这样一个简单的安全访问的 Kafka 就配置完成了。下篇继续介绍，如何进行授权配置。</p>
+<h4 id="参考文档及推荐阅读"><a href="#参考文档及推荐阅读" class="headerlink" title="参考文档及推荐阅读"></a>参考文档及推荐阅读</h4><p><a href="https://time.geekbang.org/column/intro/100029201" target="_blank" rel="noopener">Kafka核心技术与实战</a></p>
+<p><a href="https://kafka.apache.org/documentation/#security_overview" target="_blank" rel="noopener">Apache Kafka</a></p>
 
       
 
@@ -244,7 +258,7 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Kafka</a>
         		</li>
       		
 		</ul>
@@ -263,18 +277,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2019/02/13/「第11讲」02-NIO-如何实现多路复用？-学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          「第11讲」02 NIO 如何实现多路复用？|学习笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/10/「第10讲」如何保证集合是线程安全的-ConcurrentHashMap如何实现高效地线程安全？/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">「第10讲」如何保证集合是线程安全的? ConcurrentHashMap如何实现高效地线程安全？</div>
+    <a href="/2021/08/22/jasypt-配置文件加密实践笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jasypt 配置文件加密实践笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
